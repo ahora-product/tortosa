@@ -10,7 +10,7 @@
   <meta name="keywords" content="rótulos Valencia, fachadas Valencia, rotulación, letras corpóreas, rótulos luminosos, regalos de empresa, textil publicitario, ropa laboral, imprenta Valencia, reclamos publicitarios">
   <meta name="author" content="Comercial Tortosa">
   <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#1a1613">
+  <meta name="theme-color" content="#16120F">
   <link rel="canonical" href="https://comercialtortosa.com/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -27,12 +27,23 @@
   <meta name="twitter:description" content="Rótulos, fachadas, rotulación, textil y regalos de empresa en Valencia. Más de 25 años dando imagen a tu negocio.">
   <meta name="twitter:image" content="https://comercialtortosa.com/assets/og-image.jpg">
 
-  <!-- ================== TIPOGRAFÍA ================== -->
+  <!-- ================== TIPOGRAFÍA ==================
+       Fraunces (serif de display, para titulares editoriales) +
+       Plus Jakarta Sans (sans, para texto e interfaz). -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Arranque: marca que hay JS y muestra la intro. Una red de seguridad
+       garantiza que el contenido aparezca aunque algún script externo falle. -->
+  <script>
+    document.documentElement.classList.add('js', 'is-loading');
+    window.setTimeout(function () {
+      document.documentElement.classList.remove('is-loading');
+    }, 1800);
+  </script>
 
   <!-- ================== DATOS ESTRUCTURADOS (SEO local) ================== -->
   <!-- Le dice a Google que esto es un negocio local de Valencia. Mejora el posicionamiento en búsquedas cercanas y en Google Maps. -->
@@ -83,6 +94,20 @@
   <!-- Enlace de accesibilidad para saltar al contenido (lectores de pantalla) -->
   <a class="skip-link" href="#inicio">Saltar al contenido</a>
 
+  <!-- Barra de progreso de lectura -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ====================================================== -->
+  <!-- INTRO DE CARGA                                         -->
+  <!-- ====================================================== -->
+  <div class="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <span class="preloader-word">tortosa</span>
+      <span class="preloader-tag">reclamos publicitarios — Valencia</span>
+    </div>
+    <span class="preloader-bar"><span class="preloader-bar-fill"></span></span>
+  </div>
+
   <!-- ====================================================== -->
   <!-- CABECERA                                               -->
   <!-- ====================================================== -->
@@ -114,7 +139,7 @@
         </ul>
       </nav>
 
-      <a class="btn btn-primary header-cta" href="#contacto">Pide presupuesto</a>
+      <a class="btn btn-primary header-cta" href="#contacto" data-magnetic>Pide presupuesto</a>
 
       <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
@@ -144,23 +169,27 @@
       <div class="hero-slats" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Reclamos publicitarios · Valencia · +25 años</p>
-          <h1 id="hero-title">Rótulos y fachadas que <span class="hl">destacan tu negocio</span></h1>
-          <p class="lead">Diseñamos, fabricamos e instalamos rótulos, fachadas, rotulación, textil y regalos de empresa. Damos imagen a tu marca de principio a fin.</p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto">Pide presupuesto</a>
+          <p class="eyebrow hero-eyebrow" data-hero="eyebrow">Reclamos publicitarios · Valencia · +25 años</p>
+          <h1 id="hero-title" class="hero-title">
+            <span class="line"><span class="line-i">Rótulos y fachadas</span></span>
+            <span class="line"><span class="line-i">que <em>destacan</em></span></span>
+            <span class="line"><span class="line-i">tu negocio.</span></span>
+          </h1>
+          <p class="lead" data-hero="lead">Diseñamos, fabricamos e instalamos rótulos, fachadas, rotulación, textil y regalos de empresa. Damos imagen a tu marca de principio a fin.</p>
+          <div class="hero-actions" data-hero="actions">
+            <a class="btn btn-primary" href="#contacto" data-magnetic>Pide presupuesto</a>
             <a class="btn btn-ghost" href="#servicios">Ver lo que hacemos</a>
           </div>
-          <ul class="hero-stats">
-            <li><strong>+25</strong><span>años de experiencia</span></li>
+          <ul class="hero-stats" data-hero="stats">
+            <li><strong data-count="25" data-prefix="+">+25</strong><span>años de experiencia</span></li>
             <li><strong>Valencia</strong><span>y alrededores</span></li>
             <li><strong>Llave en mano</strong><span>diseño · producción · montaje</span></li>
           </ul>
         </div>
 
-        <div class="hero-media">
+        <div class="hero-media" data-hero="media">
           <!-- Coloca aquí la foto de tu fachada: assets/tienda-fachada.jpg -->
-          <div class="media media-hero" data-label="Foto de la fachada de Tortosa">
+          <div class="media media-hero" data-label="Foto de la fachada de Tortosa" data-parallax>
             <img src="assets/tienda-fachada.jpg" alt="Fachada de la tienda Comercial Tortosa en Valencia con rótulo de letras corpóreas" loading="eager" onload="this.parentElement.classList.add('has-img')">
           </div>
           <div class="hero-badge">
@@ -169,21 +198,31 @@
           </div>
         </div>
       </div>
+
+      <a class="hero-scroll" href="#servicios" aria-label="Bajar a servicios">
+        <span class="hero-scroll-line" aria-hidden="true"></span>
+        <span>Desliza</span>
+      </a>
     </section>
 
     <!-- ====================================================== -->
-    <!-- BARRA DE CONFIANZA                                     -->
+    <!-- BARRA DE CONFIANZA (marquesina)                        -->
     <!-- ====================================================== -->
     <section class="trust" aria-label="Marcas con las que trabajamos">
-      <div class="container trust-inner">
-        <p class="trust-label">Trabajamos con las mejores marcas</p>
-        <ul class="trust-logos">
-          <li>Makito</li>
-          <li>Valento</li>
-          <li>Roly</li>
-          <li>Velilla</li>
-          <li>Kedat</li>
-        </ul>
+      <p class="trust-label container">Trabajamos con las mejores marcas</p>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Makito</span><span class="dot">•</span>
+          <span>Valento</span><span class="dot">•</span>
+          <span>Roly</span><span class="dot">•</span>
+          <span>Velilla</span><span class="dot">•</span>
+          <span>Kedat</span><span class="dot">•</span>
+          <span>Makito</span><span class="dot">•</span>
+          <span>Valento</span><span class="dot">•</span>
+          <span>Roly</span><span class="dot">•</span>
+          <span>Velilla</span><span class="dot">•</span>
+          <span>Kedat</span><span class="dot">•</span>
+        </div>
       </div>
     </section>
 
@@ -193,8 +232,9 @@
     <section class="section services" id="servicios" aria-labelledby="services-title">
       <div class="container">
         <header class="section-head reveal">
+          <span class="sec-no">01 — Servicios</span>
           <p class="eyebrow">Lo que hacemos</p>
-          <h2 id="services-title">Todo para que tu marca se vea</h2>
+          <h2 id="services-title" data-split>Todo para que tu marca se vea</h2>
           <p class="section-sub">Una sola empresa para la imagen completa de tu negocio, dentro y fuera.</p>
         </header>
 
@@ -271,8 +311,9 @@
       <div class="fachadas-slats" aria-hidden="true"></div>
       <div class="container fachadas-inner">
         <div class="fachadas-copy reveal">
+          <span class="sec-no sec-no-light">02 — Fachadas</span>
           <p class="eyebrow eyebrow-light">Lo que mejor hacemos</p>
-          <h2 id="fachadas-title">Tu fachada es tu mejor comercial</h2>
+          <h2 id="fachadas-title" data-split>Tu fachada es tu mejor comercial</h2>
           <p class="lead-light">La primera impresión de tu negocio entra por los ojos. Diseñamos, fabricamos e instalamos fachadas y rótulos que hacen que te vean, te recuerden y entren.</p>
           <ul class="fachadas-list">
             <li>Letras corpóreas</li>
@@ -282,12 +323,12 @@
             <li>Lonas y banderolas</li>
             <li>Señalética</li>
           </ul>
-          <a class="btn btn-light" href="#contacto">Quiero renovar mi fachada</a>
+          <a class="btn btn-light" href="#contacto" data-magnetic>Quiero renovar mi fachada</a>
         </div>
 
         <div class="fachadas-gallery reveal">
           <!-- Sustituye por fotos reales de fachadas: assets/fachada-1.jpg, fachada-2.jpg, fachada-3.jpg -->
-          <div class="media media-tall" data-label="Fachada — proyecto">
+          <div class="media media-tall" data-label="Fachada — proyecto" data-parallax>
             <img src="assets/fachada-1.jpg" alt="Fachada con rótulo luminoso realizada por Tortosa en Valencia" loading="lazy" onload="this.parentElement.classList.add('has-img')">
           </div>
           <div class="media" data-label="Rótulo — proyecto">
@@ -306,8 +347,9 @@
     <section class="section process" id="proceso" aria-labelledby="process-title">
       <div class="container">
         <header class="section-head reveal">
+          <span class="sec-no">03 — Cómo trabajamos</span>
           <p class="eyebrow">Cómo trabajamos</p>
-          <h2 id="process-title">De la idea a la pared, sin que te preocupes de nada</h2>
+          <h2 id="process-title" data-split>De la idea a la pared, sin que te preocupes de nada</h2>
         </header>
         <ol class="process-steps">
           <li class="reveal">
@@ -341,13 +383,14 @@
       <div class="container about-inner">
         <div class="about-media reveal">
           <!-- Foto del interior de la tienda: assets/tienda-interior.jpg -->
-          <div class="media media-tall" data-label="Interior de la tienda Tortosa">
+          <div class="media media-tall" data-label="Interior de la tienda Tortosa" data-parallax>
             <img src="assets/tienda-interior.jpg" alt="Interior de la tienda de Comercial Tortosa en Valencia" loading="lazy" onload="this.parentElement.classList.add('has-img')">
           </div>
         </div>
         <div class="about-copy reveal">
+          <span class="sec-no">04 — Nosotros</span>
           <p class="eyebrow">Quiénes somos</p>
-          <h2 id="about-title">Cerca de ti desde hace más de 25 años</h2>
+          <h2 id="about-title" data-split>Cerca de ti desde hace más de 25 años</h2>
           <p>En Comercial Tortosa llevamos más de 25 años dando imagen a los negocios de Valencia. Cuidamos cada detalle con la misma seriedad y compromiso del primer día, siempre a la vanguardia en nuevas tecnologías de impresión y rotulación.</p>
           <p>Desde un regalo de empresa hasta la fachada completa de tu local, somos tu único proveedor: diseño, producción e instalación bajo un mismo techo.</p>
           <ul class="about-points">
@@ -355,7 +398,7 @@
             <li><strong>Calidad</strong> en materiales y acabados</li>
             <li><strong>Cumplimos plazos</strong> y nos hacemos cargo de todo</li>
           </ul>
-          <a class="btn btn-primary" href="#contacto">Hablemos de tu proyecto</a>
+          <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proyecto</a>
         </div>
       </div>
     </section>
@@ -366,8 +409,9 @@
     <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
         <header class="section-head reveal">
+          <span class="sec-no">05 — Portfolio</span>
           <p class="eyebrow">Nuestros trabajos</p>
-          <h2 id="portfolio-title">Lo último que hemos hecho</h2>
+          <h2 id="portfolio-title" data-split>Lo último que hemos hecho</h2>
           <p class="section-sub">Cada proyecto que sale de nuestro taller lo compartimos en Instagram. Síguenos para ver fachadas, rótulos y trabajos reales. <strong>Esta galería se actualiza sola</strong> cada vez que publicamos.</p>
           <a class="btn btn-outline ig-follow" href="https://www.instagram.com/comercialtortosa/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -400,8 +444,9 @@
     <section class="section contact" id="contacto" aria-labelledby="contact-title">
       <div class="container contact-inner">
         <div class="contact-copy reveal">
+          <span class="sec-no sec-no-light">06 — Contacto</span>
           <p class="eyebrow eyebrow-light">Hablemos</p>
-          <h2 id="contact-title">Cuéntanos tu proyecto</h2>
+          <h2 id="contact-title" data-split>Cuéntanos tu proyecto</h2>
           <p class="lead-light">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
 
           <ul class="contact-details">
@@ -449,6 +494,12 @@
   <!-- ====================================================== -->
   <footer class="site-footer">
     <div class="footer-slats" aria-hidden="true"></div>
+    <div class="container footer-cta reveal">
+      <p class="footer-cta-eyebrow">¿Empezamos?</p>
+      <a class="footer-cta-title" href="#contacto" data-split-link>
+        Demos imagen a tu negocio
+      </a>
+    </div>
     <div class="container footer-inner">
       <div class="footer-brand">
         <span class="brand-text brand-text-light">
@@ -498,6 +549,13 @@
   <!-- Botón flotante de presupuesto en móvil -->
   <a class="floating-cta" href="#contacto">Pide presupuesto</a>
 
-  <script src="script.js"></script>
+  <!-- ================== LIBRERÍAS DE ANIMACIÓN (desde internet) ==================
+       Lenis: scroll suave con inercia. GSAP + ScrollTrigger: animaciones al hacer
+       scroll. Se cargan con "defer" para no frenar la carga. Si no llegaran a
+       cargarse, la web funciona igual (el contenido se ve sin animación). -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
