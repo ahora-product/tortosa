@@ -28,11 +28,11 @@
   <meta name="twitter:image" content="https://comercialtortosa.com/assets/og-image.jpg">
 
   <!-- ================== TIPOGRAFÍA ==================
-       Fraunces (serif de display, para titulares editoriales) +
-       Plus Jakarta Sans (sans, para texto e interfaz). -->
+       DM Serif Display (serif de display, para titulares editoriales) +
+       DM Sans (sans, para texto e interfaz). -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 
@@ -55,7 +55,7 @@
     "alternateName": "Tortosa Reclamos Publicitarios",
     "description": "Empresa de rótulos, fachadas, rotulación, textil publicitario, ropa laboral, regalos de empresa e imprenta en Valencia. Más de 25 años de experiencia.",
     "image": "https://comercialtortosa.com/assets/og-image.jpg",
-    "logo": "https://comercialtortosa.com/assets/logo.png",
+    "logo": "https://comercialtortosa.com/assets/brand/logo.svg",
     "url": "https://comercialtortosa.com/",
     "telephone": "+34963570111",
     "email": "david@comercialtortosa.com",
@@ -101,11 +101,13 @@
   <!-- INTRO DE CARGA                                         -->
   <!-- ====================================================== -->
   <div class="preloader" aria-hidden="true">
-    <div class="preloader-inner">
-      <span class="preloader-word">tortosa</span>
-      <span class="preloader-tag">reclamos publicitarios — Valencia</span>
+    <div class="preloader-lockup">
+      <div class="preloader-inner">
+        <img class="preloader-iso" src="assets/brand/logo-isotipo.svg" alt="">
+        <img class="preloader-logo" src="assets/brand/logo.svg" alt="">
+      </div>
+      <span class="preloader-bar"><span class="preloader-bar-fill"></span></span>
     </div>
-    <span class="preloader-bar"><span class="preloader-bar-fill"></span></span>
   </div>
 
   <!-- ====================================================== -->
@@ -114,32 +116,22 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Tortosa, inicio">
-        <!-- Logo de texto. Para usar tu logo real, sustituye este bloque por:
-             <img src="assets/logo.png" alt="Comercial Tortosa" class="brand-logo"> -->
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 32 32" width="32" height="32" fill="none">
-            <circle cx="16" cy="16" r="15" fill="currentColor"/>
-            <path d="M11 10.5h10M16 10.5V22M12 22h8" stroke="var(--cream)" stroke-width="2.4" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="brand-text">
-          <strong>tortosa</strong>
-          <small>reclamos publicitarios</small>
-        </span>
+        <img class="brand-iso" src="assets/brand/logo-isotipo.svg" alt="" aria-hidden="true">
+        <img class="brand-logo" src="assets/brand/logo.svg" alt="Tortosa, reclamos publicitarios">
       </a>
 
       <nav class="main-nav" aria-label="Navegación principal">
         <ul>
           <li><a href="#servicios">Servicios</a></li>
           <li><a href="#fachadas">Fachadas</a></li>
-          <li><a href="#proceso">Cómo trabajamos</a></li>
+          <li><a href="#catalogos">Catálogos</a></li>
           <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </nav>
 
-      <a class="btn btn-primary header-cta" href="#contacto" data-magnetic>Pide presupuesto</a>
+      <a class="btn btn-light header-cta" href="#contacto" data-magnetic>Pide presupuesto</a>
 
       <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav">
         <span></span><span></span><span></span>
@@ -151,58 +143,54 @@
       <ul>
         <li><a href="#servicios">Servicios</a></li>
         <li><a href="#fachadas">Fachadas</a></li>
-        <li><a href="#proceso">Cómo trabajamos</a></li>
+        <li><a href="#catalogos">Catálogos</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-      <a class="btn btn-primary" href="#contacto">Pide presupuesto</a>
+      <a class="btn btn-light" href="#contacto">Pide presupuesto</a>
     </nav>
   </header>
 
   <main id="inicio">
 
+    <div class="hero-stage">
     <!-- ====================================================== -->
     <!-- HERO                                                   -->
     <!-- ====================================================== -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-slats" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="eyebrow hero-eyebrow" data-hero="eyebrow">Reclamos publicitarios · Valencia · +25 años</p>
           <h1 id="hero-title" class="hero-title">
-            <span class="line"><span class="line-i">Rótulos y fachadas</span></span>
-            <span class="line"><span class="line-i">que <em>destacan</em></span></span>
-            <span class="line"><span class="line-i">tu negocio.</span></span>
+            <span class="line"><span class="line-i">La imagen que</span></span>
+            <span class="line"><span class="line-i">hace <em>destacar</em> tu negocio</span></span>
           </h1>
           <p class="lead" data-hero="lead">Diseñamos, fabricamos e instalamos rótulos, fachadas, rotulación, textil y regalos de empresa. Damos imagen a tu marca de principio a fin.</p>
           <div class="hero-actions" data-hero="actions">
-            <a class="btn btn-primary" href="#contacto" data-magnetic>Pide presupuesto</a>
-            <a class="btn btn-ghost" href="#servicios">Ver lo que hacemos</a>
+            <a class="btn btn-light" href="#contacto" data-magnetic>Pide presupuesto</a>
           </div>
-          <ul class="hero-stats" data-hero="stats">
-            <li><strong data-count="25" data-prefix="+">+25</strong><span>años de experiencia</span></li>
-            <li><strong>Valencia</strong><span>y alrededores</span></li>
-            <li><strong>Llave en mano</strong><span>diseño · producción · montaje</span></li>
-          </ul>
         </div>
 
         <div class="hero-media" data-hero="media">
-          <!-- Coloca aquí la foto de tu fachada: assets/tienda-fachada.jpg -->
           <div class="media media-hero" data-label="Foto de la fachada de Tortosa" data-parallax>
-            <img src="assets/tienda-fachada.jpg" alt="Fachada de la tienda Comercial Tortosa en Valencia con rótulo de letras corpóreas" loading="eager" onload="this.parentElement.classList.add('has-img')">
+            <img src="assets/brand/fachada.png" alt="Fachada de la tienda Comercial Tortosa en Valencia con rótulo de letras corpóreas" loading="eager" onload="this.parentElement.classList.add('has-img')">
           </div>
-          <div class="hero-badge">
-            <span class="hero-badge-num">25</span>
-            <span class="hero-badge-text">años a tu lado</span>
+          <div class="hero-badge" aria-label="25 años a tu lado">
+            <svg class="hero-badge-ring" viewBox="0 0 140 140" aria-hidden="true">
+              <defs>
+                <path id="hero-badge-path" d="M70 70 m -55 0 a 55 55 0 1 1 110 0 a 55 55 0 1 1 -110 0"></path>
+              </defs>
+              <circle class="hero-badge-circle" cx="70" cy="70" r="62"></circle>
+              <text class="hero-badge-text">
+                <textPath href="#hero-badge-path" startOffset="50%" text-anchor="middle">25 años a tu lado · 25 años a tu lado ·</textPath>
+              </text>
+            </svg>
+            <span class="hero-badge-num" aria-hidden="true">25</span>
           </div>
         </div>
       </div>
 
-      <a class="hero-scroll" href="#servicios" aria-label="Bajar a servicios">
-        <span class="hero-scroll-line" aria-hidden="true"></span>
-        <span>Desliza</span>
-      </a>
     </section>
 
     <!-- ====================================================== -->
@@ -212,19 +200,30 @@
       <p class="trust-label container">Trabajamos con las mejores marcas</p>
       <div class="marquee" aria-hidden="true">
         <div class="marquee-track">
-          <span>Makito</span><span class="dot">•</span>
-          <span>Valento</span><span class="dot">•</span>
-          <span>Roly</span><span class="dot">•</span>
-          <span>Velilla</span><span class="dot">•</span>
-          <span>Kedat</span><span class="dot">•</span>
-          <span>Makito</span><span class="dot">•</span>
-          <span>Valento</span><span class="dot">•</span>
-          <span>Roly</span><span class="dot">•</span>
-          <span>Velilla</span><span class="dot">•</span>
-          <span>Kedat</span><span class="dot">•</span>
+          <span class="marquee-logo marquee-logo-makito"><img src="assets/logos/makito-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-valento"><img src="assets/logos/valento-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-roly"><img src="assets/logos/roly-white.svg" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-velilla"><img src="assets/logos/velilla-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-kedat"><img src="assets/logos/kedat-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-makito"><img src="assets/logos/makito-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-valento"><img src="assets/logos/valento-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-roly"><img src="assets/logos/roly-white.svg" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-velilla"><img src="assets/logos/velilla-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
+          <span class="marquee-logo marquee-logo-kedat"><img src="assets/logos/kedat-white.png" alt=""></span>
+          <span class="marquee-sep">•</span>
         </div>
       </div>
     </section>
+    </div>
 
     <!-- ====================================================== -->
     <!-- SERVICIOS                                              -->
@@ -241,64 +240,64 @@
         <div class="services-grid">
           <!-- Tarjeta destacada: FACHADAS -->
           <article class="service-card service-featured reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-5h6v5"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — rótulos y fachadas">
+              <img src="assets/servicios/1.%20Rotulos%20y%20fachadas.png" alt="Ejemplos de rótulos, letras corpóreas, fachadas y escaparates diseñados por Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Rótulos y Fachadas</h3>
-            <p>Letras corpóreas, rótulos luminosos LED, fachadas completas y escaparates que convierten tu local en tu mejor anuncio.</p>
-            <a class="service-link" href="#fachadas">Ver fachadas <span aria-hidden="true">→</span></a>
+            <div class="service-content">
+              <h3>Rótulos y Fachadas</h3>
+              <p>Letras corpóreas, rótulos luminosos LED, fachadas completas y escaparates que convierten tu local en tu mejor anuncio.</p>
+              <a class="service-link" href="#fachadas">Ver fachadas <span aria-hidden="true">→</span></a>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 12h20M7 18v2M17 18v2"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — rotulación">
+              <img src="assets/servicios/3.%20Rotulacion.png" alt="Ejemplos de rotulación de vehículos, vinilos, lonas y señalética con el logo de Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Rotulación</h3>
-            <p>Vehículos, vinilos, lonas y señalética. Llevamos tu marca a cualquier superficie.</p>
+            <div class="service-content">
+              <h3>Rotulación</h3>
+              <p>Vehículos, vinilos, lonas y señalética. Llevamos tu marca a cualquier superficie.</p>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 12V8a2 2 0 0 0-2-2h-3l-1.5-1.5h-3L9 6H6a2 2 0 0 0-2 2v4M4 12l2 8h12l2-8M9 16h6"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — regalos de empresa">
+              <img src="assets/servicios/2.%20Regalos%20de%20empresa.png" alt="Ejemplos de regalos de empresa personalizados con el logo de Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Regalos de empresa</h3>
-            <p>Detalles promocionales personalizados que tu marca regala y tus clientes recuerdan.</p>
+            <div class="service-content">
+              <h3>Regalos de empresa</h3>
+              <p>Detalles promocionales personalizados que tu marca regala y tus clientes recuerdan.</p>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 3l3 3 3-2 3 2 3-3v7l-2 1v9H8v-9l-2-1zM9 6v15"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — textil publicitario">
+              <img src="assets/servicios/5.%20Textil%20publicitario.png" alt="Ejemplos de camisetas, sudaderas, polos y gorras con el logo de Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Textil publicitario</h3>
-            <p>Camisetas, sudaderas y gorras con tu logo. Calidad que se lleva puesta.</p>
+            <div class="service-content">
+              <h3>Textil publicitario</h3>
+              <p>Camisetas, sudaderas y gorras con tu logo. Calidad que se lleva puesta.</p>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 3h10v5H7zM5 8h14v8H5zM5 16h14M9 16v5h6v-5"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — ropa laboral">
+              <img src="assets/servicios/6.%20Ropa%20laboral.png" alt="Ejemplos de uniformes, ropa laboral y prendas de trabajo con el logo de Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Ropa laboral</h3>
-            <p>Uniformes y ropa de trabajo personalizada, cómoda, resistente y con tu imagen.</p>
+            <div class="service-content">
+              <h3>Ropa laboral</h3>
+              <p>Uniformes y ropa de trabajo personalizada, cómoda, resistente y con tu imagen.</p>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-2M6 14h12v7H6z"/>
-              </svg>
+            <div class="service-photo media" data-label="Foto collage — imprenta">
+              <img src="assets/servicios/4.%20Imprenta.png" alt="Ejemplos de tarjetas, flyers, catálogos, carpetas y material impreso con el logo de Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
             </div>
-            <h3>Imprenta</h3>
-            <p>Tarjetas, flyers, catálogos y todo el material impreso de tu empresa.</p>
+            <div class="service-content">
+              <h3>Imprenta</h3>
+              <p>Tarjetas, flyers, catálogos y todo el material impreso de tu empresa.</p>
+            </div>
           </article>
         </div>
       </div>
@@ -312,7 +311,7 @@
       <div class="container fachadas-inner">
         <div class="fachadas-copy reveal">
           <span class="sec-no sec-no-light">02 — Fachadas</span>
-          <p class="eyebrow eyebrow-light">Lo que mejor hacemos</p>
+          <p class="eyebrow eyebrow-light">Somos expertos</p>
           <h2 id="fachadas-title" data-split>Tu fachada es tu mejor comercial</h2>
           <p class="lead-light">La primera impresión de tu negocio entra por los ojos. Diseñamos, fabricamos e instalamos fachadas y rótulos que hacen que te vean, te recuerden y entren.</p>
           <ul class="fachadas-list">
@@ -342,37 +341,238 @@
     </section>
 
     <!-- ====================================================== -->
-    <!-- PROCESO                                                -->
+    <!-- CATÁLOGOS                                              -->
+    <!-- Cada tarjeta abre el catálogo del proveedor en una     -->
+    <!-- pestaña nueva. Para añadir o cambiar uno, copia una    -->
+    <!-- tarjeta <li>…</li> y cambia el enlace y los textos.    -->
     <!-- ====================================================== -->
-    <section class="section process" id="proceso" aria-labelledby="process-title">
+    <section class="section catalogs" id="catalogos" aria-labelledby="catalogs-title">
       <div class="container">
         <header class="section-head reveal">
-          <span class="sec-no">03 — Cómo trabajamos</span>
-          <p class="eyebrow">Cómo trabajamos</p>
-          <h2 id="process-title" data-split>De la idea a la pared, sin que te preocupes de nada</h2>
+          <span class="sec-no">03 — Catálogos</span>
+          <p class="eyebrow">Para inspirarte</p>
+          <h2 id="catalogs-title" data-split>Hojea nuestros catálogos</h2>
+          <p class="section-sub">Miles de productos para personalizar con tu marca. Hojéalos con calma, apunta lo que te guste y pídenos presupuesto. Cada catálogo se abre en una pestaña nueva.</p>
         </header>
-        <ol class="process-steps">
-          <li class="reveal">
-            <span class="step-num">01</span>
-            <h3>Asesoramiento</h3>
-            <p>Estudiamos tu local, tu marca y lo que necesitas. Te aconsejamos sin compromiso.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">02</span>
-            <h3>Diseño</h3>
-            <p>Te presentamos propuestas a medida hasta dar con la que encaja contigo.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">03</span>
-            <h3>Producción</h3>
-            <p>Fabricamos en nuestro taller con materiales de primera calidad.</p>
-          </li>
-          <li class="reveal">
-            <span class="step-num">04</span>
-            <h3>Instalación</h3>
-            <p>Lo montamos todo, llave en mano. Tú solo tienes que abrir.</p>
-          </li>
-        </ol>
+
+        <!-- Cada grupo tiene: título a la izquierda y portadas a la derecha.
+             Las portadas son "dibujadas" con CSS (cover-ink = oscura,
+             cover-mocca = marrón, cover-cream = clara). -->
+
+        <!-- Regalos de empresa / Promocional -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <span class="catalog-group-tag">Promocional</span>
+            <h3>Regalos de empresa</h3>
+            <p>Miles de detalles para regalar con tu logo, para cualquier ocasión y presupuesto.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://generalcatalogue2026.eu/84c9d8fffd443588f84ecd273f1194da/" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-ink">
+                  <span class="cover-top"><span>Catálogo I</span><span>2026</span></span>
+                  <span class="cover-title">Regalos de empresa I</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Regalos de empresa I</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://www.publicatalogue.com/2026/es/#p=1" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-mocca">
+                  <span class="cover-top"><span>Catálogo II</span><span>2026</span></span>
+                  <span class="cover-title">Regalos de empresa II</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Regalos de empresa II</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://flipboxapp.net/client/cateye-2026-es-prices" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-cream">
+                  <span class="cover-top"><span>Catálogo III</span><span>2026</span></span>
+                  <span class="cover-title">Regalos de empresa III</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Regalos de empresa III</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Promociones -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <h3>Promociones</h3>
+            <p>Artículos de publicidad para campañas, ferias y eventos.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://flipboxapp.net/client/cateye-2026-es-prices" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-mocca">
+                  <span class="cover-top"><span>Catálogo 4</span><span>2026</span></span>
+                  <span class="cover-title">Promociones y publicidad</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Promociones y publicidad</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Personalización -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <h3>Personalización</h3>
+            <p>Técnicas de marcaje y acabados para que cada artículo lleve tu marca.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://www.theinfinite-promotional.eu/esp/#page/1" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-ink">
+                  <span class="cover-top"><span>Catálogo 5</span><span>2026</span></span>
+                  <span class="cover-title">Personalización</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Personalización</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Textil -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <h3>Textil</h3>
+            <p>Camisetas, sudaderas, polos y gorras de las mejores marcas.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://www.roly.es/icatalog/urlCatRoly?lang=es" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-cream">
+                  <span class="cover-top"><span>Textil</span><span>2026</span></span>
+                  <span class="cover-title">Roly</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Roly</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://www.capicuacic.com/producto.php?filtro=general" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-ink">
+                  <span class="cover-top"><span>Textil</span><span>2026</span></span>
+                  <span class="cover-title">Fruit</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Fruit</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://mktextil2026.eu/d7453a31b145d607d23130fbf43a3e2d/#page/42" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-mocca">
+                  <span class="cover-top"><span>Textil</span><span>2026</span></span>
+                  <span class="cover-title">Makito Textil</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Makito Textil</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="http://www.valentocatalog.eu/es-flash/index.html" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-cream">
+                  <span class="cover-top"><span>Textil</span><span>2026</span></span>
+                  <span class="cover-title">Valento</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Valento</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Ropa laboral y calzado -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <h3>Ropa laboral y calzado</h3>
+            <p>Uniformes y ropa de trabajo cómoda, resistente y con tu imagen.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://b2b.velilla-group.com/es/catalogo-pdf-velilla-es" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-ink">
+                  <span class="cover-top"><span>Laboral</span><span>2026</span></span>
+                  <span class="cover-title">Velilla</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Velilla</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="http://www.valentocatalog.eu/LABORAL/es-flash/index.html" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-cream">
+                  <span class="cover-top"><span>Laboral</span><span>2026</span></span>
+                  <span class="cover-title">Valento Laboral</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Valento Laboral</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://www.roly.es/icatalog/urlCatRolyWork?lang=es" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-mocca">
+                  <span class="cover-top"><span>Laboral</span><span>2026</span></span>
+                  <span class="cover-title">Roly Workwear</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Roly Workwear</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Calzado de seguridad -->
+        <div class="catalog-group reveal">
+          <div class="catalog-group-head">
+            <h3>Calzado de seguridad</h3>
+            <p>Protección y comodidad para cada oficio.</p>
+          </div>
+          <ul class="catalog-grid">
+            <li>
+              <a class="catalog-card" href="https://b2b.velilla-group.com/es/catalogo-pdf-vpro-es" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-mocca">
+                  <span class="cover-top"><span>Seguridad</span><span>2026</span></span>
+                  <span class="cover-title">Velilla V-Pro</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Velilla V-Pro</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="catalog-card" href="https://www.roly.es/icatalog/urlCatRolyWork?lang=es" target="_blank" rel="noopener">
+                <span class="catalog-cover cover-ink">
+                  <span class="cover-top"><span>Seguridad</span><span>2026</span></span>
+                  <span class="cover-title">Roly Workwear</span>
+                  <span class="cover-brand">tortosa · valencia</span>
+                </span>
+                <span class="catalog-name">Roly Workwear</span>
+                <span class="catalog-link">Ver catálogo <span aria-hidden="true">↗</span></span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -388,7 +588,7 @@
           </div>
         </div>
         <div class="about-copy reveal">
-          <span class="sec-no">04 — Nosotros</span>
+          <span class="sec-no">04 — Sobre Tortosa</span>
           <p class="eyebrow">Quiénes somos</p>
           <h2 id="about-title" data-split>Cerca de ti desde hace más de 25 años</h2>
           <p>En Comercial Tortosa llevamos más de 25 años dando imagen a los negocios de Valencia. Cuidamos cada detalle con la misma seriedad y compromiso del primer día, siempre a la vanguardia en nuevas tecnologías de impresión y rotulación.</p>
@@ -404,7 +604,7 @@
     </section>
 
     <!-- ====================================================== -->
-    <!-- PORTFOLIO / INSTAGRAM (se actualiza solo)              -->
+    <!-- PORTFOLIO / INSTAGRAM                                  -->
     <!-- ====================================================== -->
     <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
@@ -412,7 +612,7 @@
           <span class="sec-no">05 — Portfolio</span>
           <p class="eyebrow">Nuestros trabajos</p>
           <h2 id="portfolio-title" data-split>Lo último que hemos hecho</h2>
-          <p class="section-sub">Cada proyecto que sale de nuestro taller lo compartimos en Instagram. Síguenos para ver fachadas, rótulos y trabajos reales. <strong>Esta galería se actualiza sola</strong> cada vez que publicamos.</p>
+          <p class="section-sub">Cada proyecto que sale de nuestro taller lo compartimos en Instagram. Síguenos para ver fachadas, rótulos y trabajos reales. <strong>Aquí tienes nuestras tres últimas publicaciones</strong>.</p>
           <a class="btn btn-outline ig-follow" href="https://www.instagram.com/comercialtortosa/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
@@ -422,18 +622,18 @@
         </header>
 
         <!-- ============================================================= -->
-        <!-- 👇 AQUÍ VA EL FEED DE INSTAGRAM QUE SE ACTUALIZA SOLO         -->
-        <!-- Pega aquí el código que te da Behold.so o LightWidget         -->
-        <!-- (mira las instrucciones en README.md). Mientras tanto, abajo  -->
-        <!-- se muestra una galería de ejemplo.                            -->
+        <!-- Últimas publicaciones de Instagram guardadas como imágenes     -->
         <!-- ============================================================= -->
-        <div id="instagram-feed" class="ig-grid reveal" data-widget-pending="true">
-          <div class="media media-square" data-label="Instagram"></div>
-          <div class="media media-square" data-label="Instagram"></div>
-          <div class="media media-square" data-label="Instagram"></div>
-          <div class="media media-square" data-label="Instagram"></div>
-          <div class="media media-square" data-label="Instagram"></div>
-          <div class="media media-square" data-label="Instagram"></div>
+        <div id="instagram-feed" class="ig-grid reveal">
+          <a class="media media-square ig-card" href="https://www.instagram.com/p/DVAze7TjDm8/" target="_blank" rel="noopener" data-label="Instagram" aria-label="Ver publicación de Comercial Tortosa en Instagram: fachada de Clínicas DH">
+            <img src="assets/instagram/instagram-1.jpg" alt="Fachada de Clínicas DH rotulada por Comercial Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
+          </a>
+          <a class="media media-square ig-card" href="https://www.instagram.com/p/DUtq5GWDOJ9/" target="_blank" rel="noopener" data-label="Instagram" aria-label="Ver publicación de Comercial Tortosa en Instagram: Clínica Valore">
+            <img src="assets/instagram/instagram-2.jpg" alt="Rótulo luminoso de Clínica Valore realizado por Comercial Tortosa" loading="lazy" onload="this.parentElement.classList.add('has-img')">
+          </a>
+          <a class="media media-square ig-card" href="https://www.instagram.com/p/DSZxW0CjGxT/" target="_blank" rel="noopener" data-label="Instagram" aria-label="Ver publicación de Comercial Tortosa en Instagram: ropa laboral personalizada">
+            <img src="assets/instagram/instagram-3.jpg" alt="Guantes y ropa laboral personalizados con el logo de Argente autoescuelas" loading="lazy" onload="this.parentElement.classList.add('has-img')">
+          </a>
         </div>
       </div>
     </section>
@@ -502,11 +702,9 @@
     </div>
     <div class="container footer-inner">
       <div class="footer-brand">
-        <span class="brand-text brand-text-light">
-          <strong>tortosa</strong>
-          <small>reclamos publicitarios</small>
-        </span>
+        <img class="footer-logo" src="assets/brand/logo.svg" alt="Tortosa, reclamos publicitarios">
         <p>Damos imagen a tu negocio desde hace más de 25 años. Valencia.</p>
+        <img class="footer-isotipo" src="assets/brand/logo-isotipo.svg" alt="" aria-hidden="true">
       </div>
 
       <nav class="footer-nav" aria-label="Enlaces del pie">
@@ -517,6 +715,7 @@
           <li><a href="#servicios">Regalos de empresa</a></li>
           <li><a href="#servicios">Textil y ropa laboral</a></li>
           <li><a href="#servicios">Imprenta</a></li>
+          <li><a href="#catalogos">Catálogos</a></li>
         </ul>
       </nav>
 

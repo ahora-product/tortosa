@@ -226,7 +226,7 @@
 
     tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.25')
       .fromTo(heroLines, { yPercent: 115 }, { yPercent: 0, duration: 1, ease: 'power4.out', stagger: 0.1 }, '<0.05')
-      .to(['.hero [data-hero="lead"]', '.hero [data-hero="actions"]', '.hero [data-hero="stats"]'],
+      .to(['.hero [data-hero="lead"]', '.hero [data-hero="actions"]'],
           { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.1 }, '-=0.7');
 
     if (heroMedia) {
@@ -236,7 +236,7 @@
     }
 
     // Posición inicial de los textos del hero que entran con fade-up
-    gsap.set(['.hero [data-hero="lead"]', '.hero [data-hero="actions"]', '.hero [data-hero="stats"]'], { y: 26 });
+    gsap.set(['.hero [data-hero="lead"]', '.hero [data-hero="actions"]'], { y: 26 });
     gsap.set('.hero-eyebrow', { y: 18 });
 
     /* ---------- Revelado genérico de bloques (.reveal) al hacer scroll ---------- */
