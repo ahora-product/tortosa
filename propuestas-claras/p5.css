@@ -1,0 +1,117 @@
+/* ============================================================
+   PROPUESTA 5 — "Acento terracota + carrusel"
+   Base clara de papel y crema. Se añade un segundo color de
+   acento (terracota) que convive con el mocca y da energía.
+   Novedades: etiquetas de color en servicios, carrusel horizontal
+   de trabajos por categoría y CTA final en terracota.
+   ============================================================ */
+
+:root { --terra: #C2643F; --terra-dark: #A04E2F; --terra-soft: #F2D9CC; }
+
+.hero-stage {
+  background:
+    radial-gradient(55% 70% at 100% 10%, rgba(194,100,63,.22) 0%, transparent 60%),
+    radial-gradient(60% 60% at 0% 100%, rgba(201,174,151,.45) 0%, transparent 65%),
+    var(--paper);
+}
+.hero-title em { color: var(--terra); }
+.lt-hero .hero-badge { background: radial-gradient(circle at 30% 25%, #D47753 0%, var(--terra-dark) 100%); }
+.scroll-progress { background: linear-gradient(90deg, var(--terra), var(--mocca-soft)); }
+.eyebrow { color: var(--terra-dark); }
+.sec-no-n { color: var(--terra); }
+.lt-header .main-nav a::after { background: var(--terra); }
+
+/* Servicios: etiqueta de color en cada tarjeta */
+.services { background: var(--cream); }
+.service-card { position: relative; }
+.p5-tag {
+  position: absolute; top: 16px; left: 16px; z-index: 2;
+  padding: 7px 12px; border-radius: 999px; font-size: .7rem; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+  background: var(--paper); color: var(--terra-dark); box-shadow: 0 8px 18px -10px rgba(22,18,15,.5);
+}
+.service-featured .p5-tag { background: var(--terra); color: var(--paper); }
+.service-featured { background: linear-gradient(160deg, #3a2c23 0%, #2a201a 100%); }
+.service-featured .service-link { color: #F0B79E; }
+.service-card:hover h3 { color: var(--terra-dark); }
+.service-featured:hover h3 { color: var(--paper); }
+
+/* ---------- NUEVO: carrusel de trabajos ---------- */
+.p5-work { background: var(--paper); overflow: hidden; }
+.p5-work-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 36px; }
+.p5-work-head h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); }
+.p5-arrows { display: flex; gap: 10px; flex-shrink: 0; }
+.p5-arrows button {
+  width: 52px; height: 52px; border-radius: 50%; cursor: pointer;
+  border: 1.5px solid var(--line-2); background: var(--paper); color: var(--ink); font-size: 1.2rem;
+  transition: background .3s, color .3s, border-color .3s, transform .3s var(--ease);
+}
+.p5-arrows button:hover { background: var(--terra); color: var(--paper); border-color: var(--terra); transform: scale(1.06); }
+.p5-track {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 23%); gap: 18px;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  padding: 6px 0 22px; scrollbar-width: none;
+}
+.p5-track::-webkit-scrollbar { display: none; }
+.p5-item {
+  position: relative; scroll-snap-align: start; border-radius: 22px; overflow: hidden;
+  aspect-ratio: 4 / 5; background: var(--sand); color: var(--paper);
+}
+.p5-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.p5-item::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(22,18,15,.78) 100%);
+}
+.p5-item:hover img { transform: scale(1.06); }
+.p5-cap { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 1; }
+.p5-cap small {
+  display: inline-block; padding: 5px 10px; border-radius: 999px; margin-bottom: 10px;
+  background: var(--terra); font-size: .66rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+}
+.p5-cap strong { display: block; font-family: var(--font-disp); font-weight: 400; font-size: 1.4rem; line-height: 1.15; }
+
+/* Fachadas clara */
+.fachadas { background: var(--cream-2); color: var(--ink); }
+.fachadas-slats { background-image: repeating-linear-gradient(90deg, rgba(124,94,73,.10) 0 1px, transparent 1px 30px); }
+.fachadas .sec-no-light { color: var(--terra-dark); }
+.fachadas .eyebrow-light { color: var(--terra-dark); }
+.fachadas .lead-light { color: var(--muted); }
+.fachadas-list li { color: var(--ink); }
+.fachadas-list li::before { border-color: var(--terra); }
+.fachadas .btn-light { background: var(--terra); color: var(--paper); }
+.fachadas .btn-light::before { background: var(--terra-dark); }
+
+/* Nosotros en papel con borde terracota en la foto */
+.about { background: var(--paper); color: var(--ink); }
+.about::before { display: none; }
+.about .sec-no { color: var(--terra-dark); }
+.about .eyebrow { color: var(--terra-dark); }
+.about-copy p { color: var(--muted); }
+.about-points li { color: var(--ink); }
+.about-points li::before { border-color: var(--terra); }
+.about .media { border: 0; box-shadow: 18px 18px 0 0 var(--terra-soft); }
+.about .btn-primary { background: var(--ink); color: var(--cream); }
+.about .btn-primary::before { background: var(--terra); }
+
+.portfolio { background: var(--cream); }
+.btn-outline { border-color: var(--terra); }
+.btn-outline::before { background: var(--terra); }
+
+/* Contacto en terracota suave */
+.contact { background: linear-gradient(160deg, var(--terra-soft) 0%, #EAC7B5 100%); color: var(--ink); }
+.contact::before { background-image: repeating-linear-gradient(90deg, rgba(160,78,47,.08) 0 1px, transparent 1px 30px); }
+.contact .sec-no-light { color: var(--terra-dark); }
+.contact .eyebrow-light { color: var(--terra-dark); }
+.contact .lead-light { color: rgba(22,18,15,.72); }
+.contact-details li { color: var(--ink); }
+.contact-details a:hover { color: var(--terra-dark); }
+.contact-form .btn-primary::before { background: var(--terra); }
+.field input:focus, .field textarea:focus { border-color: var(--terra); box-shadow: 0 0 0 4px rgba(194,100,63,.16); }
+
+/* CTA final en terracota */
+.footer-cta { background: radial-gradient(circle at 18% 0%, rgba(255,255,255,.22), transparent 34%), linear-gradient(135deg, #D27A55 0%, var(--terra) 45%, #7E3A22 100%); }
+
+@media (max-width: 720px) {
+  .p5-track { grid-auto-columns: 74%; }
+  .p5-arrows { display: none; }
+}

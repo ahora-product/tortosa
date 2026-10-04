@@ -86,23 +86,18 @@ body::after {
 .lead { font-size: 1.22rem; color: var(--muted); max-width: 52ch; line-height: 1.55; }
 .lead-light { font-size: 1.16rem; color: rgba(244,238,231,.8); max-width: 50ch; line-height: 1.55; }
 
-/* Numeración de sección (toque editorial / de estudio) */
+/* Numeración de sección: línea editorial (número en serif · filete · texto) */
 .sec-no {
-  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
-  font-size: .66rem; font-weight: 800; line-height: 1; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--mocca-dark);
-  padding: 7px 10px; margin-bottom: 18px; border: 1px solid rgba(124,94,73,.26);
-  border-radius: 999px; background: rgba(251,248,244,.92);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 10px 22px -20px rgba(22,18,15,.55);
+  display: flex; align-items: center; gap: 14px; width: fit-content;
+  margin-bottom: 20px; line-height: 1; color: var(--mocca-dark);
 }
-.sec-no::before {
-  content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--mocca);
+.sec-no-n { font-family: var(--font-disp); font-style: italic; font-size: 1.25rem; }
+.sec-no-t {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
 }
-.sec-no-light {
-  color: var(--mocca-soft); border-color: rgba(244,238,231,.24);
-  background: rgba(244,238,231,.1); box-shadow: inset 0 1px 0 rgba(244,238,231,.12);
-}
-.sec-no-light::before { background: var(--mocca-soft); }
+.sec-no-t::before { content: ''; width: 44px; height: 1px; background: currentColor; opacity: .55; }
+.sec-no-light { color: var(--mocca-soft); }
 
 /* ---------- Botones ---------- */
 .btn {
@@ -365,8 +360,10 @@ html.gsap-on .preloader { transition: none; }
 }
 .marquee-logo img {
   display: block; width: 100%; max-height: 38px; object-fit: contain;
-  opacity: .88;
+  opacity: .88; transition: opacity .25s ease;
 }
+a.marquee-logo:hover img, a.marquee-logo:focus-visible img { opacity: 1; }
+a.marquee-logo:focus-visible { outline: 2px solid rgba(201,174,151,.9); outline-offset: 4px; border-radius: 4px; }
 .marquee-logo-makito img { max-height: 44px; }
 .marquee-logo-valento img { max-height: 40px; }
 .marquee-logo-roly img { max-height: 42px; }
@@ -462,13 +459,7 @@ html.gsap-on .preloader { transition: none; }
   border: 1px solid rgba(244,238,231,.12);
   box-shadow: 0 34px 80px -44px rgba(0,0,0,.9);
 }
-.about .sec-no {
-  color: var(--mocca-soft);
-  border-color: rgba(244,238,231,.24);
-  background: rgba(244,238,231,.1);
-  box-shadow: inset 0 1px 0 rgba(244,238,231,.12);
-}
-.about .sec-no::before { background: var(--mocca-soft); }
+.about .sec-no { color: var(--mocca-soft); }
 .about .eyebrow { color: rgba(244,238,231,.62); }
 .about-copy h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: 24px; }
 .about-copy p { color: rgba(244,238,231,.74); margin-bottom: 18px; }
@@ -524,6 +515,22 @@ html.gsap-on .preloader { transition: none; }
   -webkit-mask-image: linear-gradient(180deg, transparent, #000); mask-image: linear-gradient(180deg, transparent, #000);
 }
 .catalog-cover > * { position: relative; z-index: 1; }
+/* Icono temático de fondo (marca de agua). Hereda el color de la portada
+   (stroke = currentColor) y se anima suavemente al pasar el ratón. */
+.catalog-cover > .catalog-cover__icon {
+  position: absolute; z-index: 0;
+  right: -13%; bottom: -7%; width: 72%; height: auto;
+  fill: none; stroke: currentColor; stroke-width: 1;
+  stroke-linejoin: round; stroke-linecap: round;
+  opacity: .12; pointer-events: none;
+  transition: transform .55s var(--ease), opacity .45s ease;
+}
+.cover-ink .catalog-cover__icon   { opacity: .16; }
+.cover-mocca .catalog-cover__icon { opacity: .17; }
+.cover-cream .catalog-cover__icon { opacity: .09; }
+.catalog-card:hover .catalog-cover__icon { transform: scale(1.07) rotate(-3deg); opacity: .22; }
+.cover-cream:hover .catalog-cover__icon,
+.catalog-card:hover .cover-cream .catalog-cover__icon { opacity: .13; }
 .cover-ink { background: linear-gradient(165deg, #262019 0%, var(--ink) 70%); color: var(--mocca-soft); }
 .cover-mocca { background: linear-gradient(165deg, var(--mocca) 0%, var(--mocca-dark) 85%); color: var(--cream); }
 .cover-cream { background: var(--paper); color: var(--ink); border: 1px solid var(--line); }

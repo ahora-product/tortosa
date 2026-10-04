@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propuestas contacto</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+  <!-- Sistema de v3: tokens, botones y etiquetas -->
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ============================================================
+       PROPUESTAS — Contacto (estructura de la publicada, estilo v3)
+       ============================================================ */
+    body { background: var(--brown); color: var(--on-dark); }
+    .intro { padding: 56px var(--gutter) 40px; max-width: var(--wrap); margin: 0 auto; }
+    .intro h1 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); margin-top: 16px; }
+    .intro p { color: var(--on-dark-muted); max-width: 66ch; margin-top: 14px; }
+    .index { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+    .index a { padding: 9px 16px; border-radius: 999px; font-size: .9rem; box-shadow: inset 0 0 0 1px var(--line-dark); color: var(--on-dark-muted); transition: .2s; }
+    .index a:hover { color: var(--brown); background: var(--ivory); }
+
+    .prop { border-top: 1px solid var(--line-dark); }
+    .prop-head { max-width: var(--wrap); margin: 0 auto; padding: 22px var(--gutter) 28px; display: flex; gap: 18px; align-items: baseline; flex-wrap: wrap; }
+    .prop-no { font-family: var(--font-disp); font-size: 2rem; color: var(--champagne); line-height: 1; }
+    .prop-head h2 { font-size: 1.5rem; letter-spacing: -0.015em; }
+    .prop-head p { color: var(--on-dark-muted); font-size: .95rem; flex-basis: 100%; max-width: 72ch; }
+
+    /* ---------- Banda de contacto (como en la publicada) ---------- */
+    .cband { position: relative; overflow: hidden; background: var(--deep); color: var(--on-dark); padding: clamp(80px, 10vw, 140px) 0; }
+    .cband::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .4;
+      background-image: repeating-linear-gradient(90deg, rgba(233,223,204,.06) 0, rgba(233,223,204,.06) 2px, transparent 2px, transparent 30px);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 28%, #000 72%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 28%, #000 72%, transparent);
+    }
+    .cband > .wrap { position: relative; z-index: 1; }
+
+    .sec-no { display: inline-flex; align-items: center; gap: 12px; font-size: .85rem; letter-spacing: .04em; color: var(--on-dark-muted); }
+    .sec-no::before { content: ''; width: 28px; height: 1px; background: var(--champagne); }
+    .eyebrow { margin-top: 26px; font-size: .82rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--champagne); }
+    .c-title { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 14px 0 18px; color: var(--ivory); }
+    .c-title em { font-style: italic; color: var(--champagne); }
+    .c-lead { font-size: 1.12rem; color: var(--on-dark-muted); max-width: 46ch; line-height: 1.55; }
+
+    .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 88px); align-items: start; }
+
+    /* Datos de contacto */
+    .details { margin-top: 38px; display: flex; flex-direction: column; gap: 18px; }
+    .details li { display: flex; align-items: flex-start; gap: 14px; color: var(--on-dark); }
+    .details a { transition: color .2s; }
+    .details a:hover { color: var(--champagne); }
+    .emo { font-size: 1.2rem; line-height: 1.4; }
+    .ico { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: var(--champagne); box-shadow: inset 0 0 0 1px rgba(198,169,126,.35); }
+    .ico svg { width: 19px; height: 19px; }
+    .details .ico + div { padding-top: 2px; }
+    .details small { display: block; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-faint); margin-bottom: 2px; }
+
+    /* Formulario (estructura .field de la publicada) */
+    .cform { background: var(--paper); color: var(--brown); border-radius: var(--r); padding: clamp(26px, 3.2vw, 40px); box-shadow: 0 30px 80px -30px rgba(0,0,0,.6); }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-weight: 700; font-size: .9rem; margin-bottom: 9px; }
+    .field input, .field textarea, .field select {
+      width: 100%; font: inherit; font-size: 1rem; color: var(--brown);
+      padding: 15px 17px; border: 1.5px solid rgba(20,15,11,.10); border-radius: var(--r-sm); background: var(--cream);
+      transition: border-color .25s, box-shadow .25s, background-color .25s; resize: vertical;
+    }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--champagne); box-shadow: 0 0 0 4px rgba(198,169,126,.22); background: #F6F0E5; }
+    .field input::placeholder, .field textarea::placeholder { color: #9C8F7B; }
+    .cform .btn-primary { background: var(--brown); color: var(--ivory); }
+    .cform .btn-primary:hover { background: var(--brown-3); }
+    .cform .btn-primary .btn-arrow { background: var(--champagne); color: var(--brown); }
+    .note { margin-top: 14px; font-size: .92rem; text-align: center; min-height: 1.2em; }
+    .note.ok { color: #2e7d51; font-weight: 600; }
+    .note.err { color: #c0392b; font-weight: 600; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* 03 · Centrado con fichas */
+    .v3c { text-align: center; }
+    .v3c .c-lead { margin: 0 auto; }
+    .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 48px 0 40px; text-align: left; }
+    .tile { padding: 22px; border-radius: var(--r); background: rgba(233,223,204,.03); box-shadow: inset 0 0 0 1px var(--line-dark); transition: box-shadow .3s, background-color .3s; display: flex; flex-direction: column; gap: 14px; }
+    a.tile:hover { box-shadow: inset 0 0 0 1px rgba(198,169,126,.5); background: rgba(198,169,126,.06); }
+    .tile .ico { width: 40px; height: 40px; }
+    .tile small { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-faint); }
+    .tile strong { display: block; font-weight: 500; margin-top: 2px; }
+    .v3c .cform { max-width: 760px; margin: 0 auto; text-align: left; }
+
+    /* 04 · Con mapa */
+    .map { margin-top: clamp(48px, 6vw, 72px); position: relative; border-radius: var(--r-lg); overflow: hidden; height: 340px; box-shadow: inset 0 0 0 1px var(--line-dark); background: var(--brown-2); }
+    .map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(.92) sepia(.25) contrast(.9); }
+    .map-card { position: absolute; left: 20px; bottom: 20px; background: var(--paper); color: var(--brown); padding: 18px 20px; border-radius: var(--r-sm); max-width: 300px; box-shadow: 0 20px 50px -20px rgba(0,0,0,.6); }
+    .map-card strong { font-family: var(--font-disp); font-weight: 400; font-size: 1.35rem; display: block; }
+    .map-card p { font-size: .9rem; color: #5C5146; margin-top: 4px; }
+    .map-card a { display: inline-flex; gap: 8px; margin-top: 10px; font-weight: 600; font-size: .9rem; }
+    .open { display: inline-flex; align-items: center; gap: 8px; margin-top: 30px; padding: 8px 14px; border-radius: 999px; font-size: .85rem; box-shadow: inset 0 0 0 1px var(--line-dark); color: var(--on-dark-muted); }
+    .open i { width: 8px; height: 8px; border-radius: 50%; background: #7FB08A; box-shadow: 0 0 0 4px rgba(127,176,138,.18); }
+    .open.closed i { background: #C98A6B; box-shadow: 0 0 0 4px rgba(201,138,107,.18); }
+
+    /* 05 · Formulario integrado en oscuro */
+    .quick { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+    .quick a { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(198,169,126,.35); font-weight: 500; font-size: .95rem; transition: background-color .25s, color .25s; }
+    .quick a svg { width: 17px; height: 17px; color: var(--champagne); transition: color .25s; }
+    .quick a:hover { background: var(--ivory); color: var(--brown); }
+    .quick a:hover svg { color: var(--brown); }
+    .meta { margin-top: 30px; color: var(--on-dark-muted); font-size: .95rem; display: grid; gap: 6px; }
+    .dform { border-left: 1px solid var(--line-dark); padding-left: clamp(28px, 4vw, 56px); }
+    .dform .field label { color: var(--on-dark-muted); font-weight: 500; font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; }
+    .dform .field input, .dform .field textarea { background: transparent; color: var(--ivory); border: 0; border-bottom: 1px solid rgba(233,223,204,.22); border-radius: 0; padding: 12px 0; font-size: 1.1rem; }
+    .dform .field input:focus, .dform .field textarea:focus { box-shadow: none; background: transparent; border-color: var(--champagne); }
+    .dform .field input::placeholder, .dform .field textarea::placeholder { color: var(--on-dark-faint); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips label { margin: 0; cursor: pointer; }
+    .chips input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+    .chips span { display: inline-block; padding: 9px 15px; border-radius: 999px; font-size: .9rem; text-transform: none; letter-spacing: 0; color: var(--on-dark); box-shadow: inset 0 0 0 1px rgba(233,223,204,.22); transition: .2s; }
+    .chips input:checked + span { background: var(--champagne); color: var(--brown); box-shadow: none; }
+    .chips input:focus-visible + span { outline: 2px solid var(--champagne); outline-offset: 2px; }
+    .dform .btn-primary { margin-top: 8px; }
+    .dform .note.ok { color: #9CCBA6; } .dform .note.err { color: #E59C84; }
+
+    @media (max-width: 900px) {
+      .c-grid { grid-template-columns: 1fr; }
+      .tiles { grid-template-columns: 1fr 1fr; }
+      .dform { border-left: 0; padding-left: 0; border-top: 1px solid var(--line-dark); padding-top: 36px; }
+    }
+    @media (max-width: 560px) {
+      .tiles, .two { grid-template-columns: 1fr; }
+      .map { height: 420px; }
+      .map-card { right: 20px; max-width: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="intro">
+    <span class="label"><i class="dot"></i>Módulo · Contacto</span>
+    <h1>5 propuestas: el contacto de la publicada en v3</h1>
+    <p>Todas siguen la fórmula de la versión publicada: banda oscura a todo el ancho con las lamas verticales de fondo (sin la tarjeta redondeada de v3), número de sección, "Hablemos", titular, entradilla, datos con icono y el formulario con etiquetas en negrita. Cambia cómo se presentan los datos y el formulario. Colores y tipografía de v3.</p>
+    <nav class="index" aria-label="Propuestas">
+      <a href="#p01">01 Calco</a><a href="#p02">02 Iconos de línea</a><a href="#p03">03 Centrado con fichas</a><a href="#p04">04 Con mapa</a><a href="#p05">05 Formulario integrado</a>
+    </nav>
+  </header>
+
+  <!-- Iconos -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5a7 7 0 0 1 14 0C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-tel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="i-time" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  </svg>
+
+  <!-- ================= 01 ================= -->
+  <section class="prop" id="p01">
+    <div class="prop-head"><span class="prop-no">01</span><h2>Calco de la publicada</h2><p>Lo mismo que hay ahora en la web publicada, pieza por pieza (también los emojis como iconos), solo pasado a la paleta y tipografía de v3.</p></div>
+    <div class="cband">
+      <div class="wrap c-grid">
+        <div>
+          <span class="sec-no">06 — Contacto</span>
+          <p class="eyebrow">Hablemos</p>
+          <h2 class="c-title">Cuéntanos tu proyecto</h2>
+          <p class="c-lead">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
+          <ul class="details">
+            <li><span class="emo" aria-hidden="true">📍</span><a href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener">Avda. Primero de Mayo, 53b · 46017 Valencia</a></li>
+            <li><span class="emo" aria-hidden="true">📞</span><span><a href="tel:+34963570111">96 357 01 11</a> · <a href="tel:+34607752844">607 752 844</a></span></li>
+            <li><span class="emo" aria-hidden="true">✉️</span><a href="mailto:david@comercialtortosa.com">david@comercialtortosa.com</a></li>
+            <li><span class="emo" aria-hidden="true">🕒</span><span>Lun a Vie · 9:30–14:00 y 16:30–20:00</span></li>
+          </ul>
+        </div>
+        <form class="cform" novalidate>
+          <div class="field"><label for="n1">Nombre</label><input id="n1" name="name" required autocomplete="name" placeholder="Tu nombre"></div>
+          <div class="field"><label for="c1">Email o teléfono</label><input id="c1" name="contact" required placeholder="Para poder responderte"></div>
+          <div class="field"><label for="m1">¿Qué necesitas?</label><textarea id="m1" name="message" rows="4" required placeholder="Cuéntanos tu proyecto: fachada, rótulo, textil…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar solicitud <span class="btn-arrow" aria-hidden="true">↗</span></button>
+          <p class="note" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 ================= -->
+  <section class="prop" id="p02">
+    <div class="prop-head"><span class="prop-no">02</span><h2>Iconos de línea</h2><p>Misma estructura, pero los emojis pasan a iconos finos en círculo color champán, cada dato con su rótulo pequeño encima. Más sobrio y coherente con v3.</p></div>
+    <div class="cband">
+      <div class="wrap c-grid">
+        <div>
+          <span class="sec-no">06 — Contacto</span>
+          <p class="eyebrow">Hablemos</p>
+          <h2 class="c-title">Cuéntanos tu <em>proyecto</em></h2>
+          <p class="c-lead">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
+          <ul class="details">
+            <li><span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><div><small>Tienda</small><a href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener">Avda. Primero de Mayo, 53b · 46017 Valencia</a></div></li>
+            <li><span class="ico"><svg aria-hidden="true"><use href="#i-tel"/></svg></span><div><small>Teléfono</small><a href="tel:+34963570111">96 357 01 11</a> · <a href="tel:+34607752844">607 752 844</a></div></li>
+            <li><span class="ico"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><small>Email</small><a href="mailto:david@comercialtortosa.com">david@comercialtortosa.com</a></div></li>
+            <li><span class="ico"><svg aria-hidden="true"><use href="#i-time"/></svg></span><div><small>Horario</small>Lun a Vie · 9:30–14:00 y 16:30–20:00</div></li>
+          </ul>
+        </div>
+        <form class="cform" novalidate>
+          <div class="field"><label for="n2">Nombre</label><input id="n2" name="name" required autocomplete="name" placeholder="Tu nombre"></div>
+          <div class="field"><label for="c2">Email o teléfono</label><input id="c2" name="contact" required placeholder="Para poder responderte"></div>
+          <div class="field"><label for="m2">¿Qué necesitas?</label><textarea id="m2" name="message" rows="4" required placeholder="Cuéntanos tu proyecto: fachada, rótulo, textil…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar solicitud <span class="btn-arrow" aria-hidden="true">↗</span></button>
+          <p class="note" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 ================= -->
+  <section class="prop" id="p03">
+    <div class="prop-head"><span class="prop-no">03</span><h2>Centrado con fichas</h2><p>Titular centrado, los cuatro datos en fichas clicables en fila y el formulario debajo, más ancho y con nombre y contacto en la misma línea. Ideal si se quiere que el contacto respire como cierre de página.</p></div>
+    <div class="cband">
+      <div class="wrap v3c">
+        <span class="sec-no">06 — Contacto</span>
+        <p class="eyebrow">Hablemos</p>
+        <h2 class="c-title">Cuéntanos tu <em>proyecto</em></h2>
+        <p class="c-lead">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
+        <div class="tiles">
+          <a class="tile" href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener"><span class="ico"><svg aria-hidden="true"><use href="#i-pin"/></svg></span><span><small>Tienda</small><strong>Avda. Primero de Mayo, 53b · Valencia</strong></span></a>
+          <a class="tile" href="tel:+34963570111"><span class="ico"><svg aria-hidden="true"><use href="#i-tel"/></svg></span><span><small>Teléfono</small><strong>96 357 01 11<br>607 752 844</strong></span></a>
+          <a class="tile" href="mailto:david@comercialtortosa.com"><span class="ico"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><span><small>Email</small><strong>david@comercialtortosa.com</strong></span></a>
+          <div class="tile"><span class="ico"><svg aria-hidden="true"><use href="#i-time"/></svg></span><span><small>Horario · Lun a Vie</small><strong>9:30–14:00<br>16:30–20:00</strong></span></div>
+        </div>
+        <form class="cform" novalidate>
+          <div class="two">
+            <div class="field"><label for="n3">Nombre</label><input id="n3" name="name" required autocomplete="name" placeholder="Tu nombre"></div>
+            <div class="field"><label for="c3">Email o teléfono</label><input id="c3" name="contact" required placeholder="Para poder responderte"></div>
+          </div>
+          <div class="field"><label for="m3">¿Qué necesitas?</label><textarea id="m3" name="message" rows="4" required placeholder="Cuéntanos tu proyecto: fachada, rótulo, textil…"></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block">Enviar solicitud <span class="btn-arrow" aria-hidden="true">↗</span></button>
+          <p class="note" role="status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 ================= -->
+  <section class="prop" id="p04">
+    <div class="prop-head"><span class="prop-no">04</span><h2>Con mapa</h2><p>La 02 más un mapa de la tienda en tonos oscuros con tarjeta "Cómo llegar", y un indicador de "Abierto ahora / Cerrado" según el horario. Refuerza que hay tienda física en Valencia.</p></div>
+    <div class="cband">
+      <div class="wrap">
+        <div class="c-grid">
+          <div>
+            <span class="sec-no">06 — Contacto</span>
+            <p class="eyebrow">Hablemos</p>
+            <h2 class="c-title">Cuéntanos tu <em>proyecto</em></h2>
+            <p class="c-lead">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
+            <span class="open" data-open><i></i><span>Lun a Vie · 9:30–14:00 y 16:30–20:00</span></span>
+            <ul class="details">
+              <li><span class="ico"><svg aria-hidden="true"><use href="#i-tel"/></svg></span><div><small>Teléfono</small><a href="tel:+34963570111">96 357 01 11</a> · <a href="tel:+34607752844">607 752 844</a></div></li>
+              <li><span class="ico"><svg aria-hidden="true"><use href="#i-mail"/></svg></span><div><small>Email</small><a href="mailto:david@comercialtortosa.com">david@comercialtortosa.com</a></div></li>
+            </ul>
+          </div>
+          <form class="cform" novalidate>
+            <div class="field"><label for="n4">Nombre</label><input id="n4" name="name" required autocomplete="name" placeholder="Tu nombre"></div>
+            <div class="field"><label for="c4">Email o teléfono</label><input id="c4" name="contact" required placeholder="Para poder responderte"></div>
+            <div class="field"><label for="m4">¿Qué necesitas?</label><textarea id="m4" name="message" rows="4" required placeholder="Cuéntanos tu proyecto: fachada, rótulo, textil…"></textarea></div>
+            <button type="submit" class="btn btn-primary btn-block">Enviar solicitud <span class="btn-arrow" aria-hidden="true">↗</span></button>
+            <p class="note" role="status"></p>
+          </form>
+        </div>
+        <div class="map">
+          <iframe title="Mapa: Comercial Tortosa, Avda. Primero de Mayo 53b, Valencia" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Avda.%20Primero%20de%20Mayo%2053b%2C%2046017%20Valencia&z=16&output=embed"></iframe>
+          <div class="map-card">
+            <strong>Ven a vernos</strong>
+            <p>Avda. Primero de Mayo, 53b · 46017 Valencia</p>
+            <a href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener">Cómo llegar <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 ================= -->
+  <section class="prop" id="p05">
+    <div class="prop-head"><span class="prop-no">05</span><h2>Formulario integrado</h2><p>Sin tarjeta clara: el formulario vive sobre el oscuro con campos de línea y unas píldoras para elegir el tipo de trabajo. A la izquierda, botones directos para llamar, escribir o ir a la tienda. El más editorial.</p></div>
+    <div class="cband">
+      <div class="wrap c-grid">
+        <div>
+          <span class="sec-no">06 — Contacto</span>
+          <p class="eyebrow">Hablemos</p>
+          <h2 class="c-title">Cuéntanos tu <em>proyecto</em></h2>
+          <p class="c-lead">Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
+          <div class="quick">
+            <a href="tel:+34963570111"><svg aria-hidden="true"><use href="#i-tel"/></svg>96 357 01 11</a>
+            <a href="tel:+34607752844"><svg aria-hidden="true"><use href="#i-tel"/></svg>607 752 844</a>
+            <a href="mailto:david@comercialtortosa.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>Escríbenos</a>
+            <a href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Cómo llegar</a>
+          </div>
+          <div class="meta">
+            <span>Avda. Primero de Mayo, 53b · 46017 Valencia</span>
+            <span>Lun a Vie · 9:30–14:00 y 16:30–20:00</span>
+          </div>
+        </div>
+        <form class="dform" novalidate>
+          <div class="field">
+            <label>¿Qué necesitas?</label>
+            <div class="chips" role="group" aria-label="Tipo de trabajo">
+              <label><input type="checkbox" name="tipo" value="Fachada"><span>Fachada</span></label>
+              <label><input type="checkbox" name="tipo" value="Rótulo"><span>Rótulo</span></label>
+              <label><input type="checkbox" name="tipo" value="Vinilo"><span>Vinilo</span></label>
+              <label><input type="checkbox" name="tipo" value="Textil"><span>Textil</span></label>
+              <label><input type="checkbox" name="tipo" value="Imprenta"><span>Imprenta</span></label>
+              <label><input type="checkbox" name="tipo" value="Otro"><span>Otro</span></label>
+            </div>
+          </div>
+          <div class="field"><label for="n5">Nombre</label><input id="n5" name="name" required autocomplete="name" placeholder="Tu nombre"></div>
+          <div class="field"><label for="c5">Email o teléfono</label><input id="c5" name="contact" required placeholder="Para poder responderte"></div>
+          <div class="field"><label for="m5">Cuéntanos más</label><textarea id="m5" name="message" rows="3" required placeholder="Medidas, plazos, ideas…"></textarea></div>
+          <button type="submit" class="btn btn-primary">Enviar solicitud <span class="btn-arrow" aria-hidden="true">↗</span></button>
+          <p class="note" role="status" style="text-align:left"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Validación de demostración (igual que en la publicada: no envía nada)
+    document.querySelectorAll('form').forEach(function (f) {
+      f.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var note = f.querySelector('.note');
+        var ok = Array.prototype.every.call(f.querySelectorAll('[required]'), function (i) { return i.value.trim() !== ''; });
+        note.className = 'note ' + (ok ? 'ok' : 'err');
+        note.textContent = ok ? '¡Gracias! Te responderemos lo antes posible.' : 'Rellena todos los campos, por favor.';
+        if (ok) f.reset();
+      });
+    });
+
+    // 04 · Abierto ahora / Cerrado (hora de Madrid)
+    (function () {
+      var el = document.querySelector('[data-open]');
+      var p = new Intl.DateTimeFormat('es-ES', { timeZone: 'Europe/Madrid', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
+      var g = function (t) { return (p.find(function (x) { return x.type === t; }) || {}).value; };
+      var d = g('weekday'), m = (+g('hour')) * 60 + (+g('minute'));
+      var lab = /s[aá]b|dom/i.test(d) ? false : (m >= 570 && m < 840) || (m >= 990 && m < 1200);
+      el.classList.toggle('closed', !lab);
+      el.querySelector('span').textContent = (lab ? 'Abierto ahora' : 'Cerrado ahora') + ' · Lun a Vie 9:30–14:00 y 16:30–20:00';
+    })();
+  </script>
+</body>
+</html>

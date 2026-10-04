@@ -1,0 +1,130 @@
+/* ============================================================
+   PROPUESTA 3 — "Bento"
+   Fondo claro y contenido organizado en mosaicos de tarjetas.
+   Novedades: lista de fachadas convertida en baldosas, tarjeta de
+   dato superpuesta en "Nosotros" y bento "Por qué Tortosa".
+   El oscuro queda solo en piezas pequeñas (tarjetas, formulario).
+   ============================================================ */
+
+.hero-stage {
+  background:
+    radial-gradient(70% 70% at 100% 0%, rgba(201,174,151,.45) 0%, transparent 60%),
+    linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+}
+/* Foto del hero dentro de un "marco" oscuro: el oscuro como acento */
+.hero-media .media-hero { outline: 10px solid var(--ink); outline-offset: -1px; }
+
+/* Servicios: mosaico con la destacada en tinta y el resto en papel */
+.services { background: var(--cream); }
+.services-grid { gap: 16px; }
+.service-card { border-radius: 24px; }
+.service-card:not(.service-featured):hover { background: var(--sand); }
+
+/* ---------- Fachadas: claro + baldosas ---------- */
+.fachadas { background: var(--paper); color: var(--ink); }
+.fachadas-slats { display: none; }
+.fachadas .sec-no-light { color: var(--mocca-dark); }
+.fachadas .eyebrow-light { color: var(--mocca-dark); }
+.fachadas .lead-light { color: var(--muted); }
+.fachadas-list { grid-template-columns: repeat(3, 1fr); gap: 10px; counter-reset: fl; }
+.fachadas-list li {
+  counter-increment: fl;
+  padding: 16px 14px 14px; border-radius: 16px; color: var(--ink);
+  background: var(--cream); border: 1px solid var(--line); font-size: .92rem; line-height: 1.3;
+  transition: transform .4s var(--ease), background .4s ease, color .4s ease;
+}
+.fachadas-list li::before {
+  content: counter(fl, decimal-leading-zero); position: static; display: block;
+  width: auto; height: auto; border: 0; transform: none; margin-bottom: 18px;
+  font-family: var(--font-disp); font-size: 1.1rem; color: var(--mocca);
+}
+.fachadas-list li:hover { transform: translateY(-4px) rotate(-1deg); background: var(--ink); color: var(--cream); }
+.fachadas-list li:hover::before { color: var(--mocca-soft); }
+.fachadas .btn-light { background: var(--ink); color: var(--cream); }
+.fachadas .btn-light::before { background: var(--mocca-dark); }
+
+/* ---------- Nosotros: claro + tarjeta superpuesta ---------- */
+.about { background: var(--cream-2); color: var(--ink); }
+.about::before { display: none; }
+.about .sec-no { color: var(--mocca-dark); }
+.about .eyebrow { color: var(--mocca-dark); }
+.about-copy p { color: var(--muted); }
+.about-points { display: none; } /* pasan al bento "Por qué Tortosa" */
+.about .media { border: 0; box-shadow: var(--shadow); }
+.about .btn-primary { background: var(--ink); color: var(--cream); }
+.about-media { position: relative; }
+.p3-float {
+  position: absolute; right: -28px; bottom: 36px; z-index: 3;
+  background: var(--ink); color: var(--cream); border-radius: 20px;
+  padding: 22px 24px; width: 210px; box-shadow: 0 30px 60px -30px rgba(22,18,15,.8);
+  transform: rotate(3deg); transition: transform .5s var(--ease);
+}
+.p3-float:hover { transform: rotate(0) scale(1.03); }
+.p3-float strong { display: block; font-family: var(--font-disp); font-weight: 400; font-size: 3rem; line-height: 1; color: var(--mocca-soft); }
+.p3-float span { display: block; margin-top: 8px; font-size: .9rem; color: rgba(244,238,231,.8); line-height: 1.4; }
+
+/* ---------- NUEVO: bento "Por qué Tortosa" ---------- */
+.p3-why { background: var(--cream-2); padding-top: 0; }
+.p3-bento { display: grid; grid-template-columns: 1.3fr 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+.p3-tile {
+  position: relative; overflow: hidden; border-radius: 24px; padding: 28px;
+  background: var(--paper); border: 1px solid var(--line);
+  display: flex; flex-direction: column; justify-content: space-between; gap: 30px; min-height: 190px;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.p3-tile:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+.p3-tile h3 { font-size: 1.45rem; }
+.p3-tile p { color: var(--muted); font-size: .95rem; margin-top: 6px; }
+.p3-ico {
+  width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center;
+  background: var(--cream); color: var(--mocca-dark);
+}
+.p3-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.p3-tile-big {
+  grid-row: span 2; background: linear-gradient(160deg, var(--mocca) 0%, var(--mocca-dark) 100%);
+  color: var(--cream); border-color: transparent;
+}
+.p3-tile-big::before {
+  content: ''; position: absolute; inset: 0; opacity: .5;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.07) 0 2px, transparent 2px 30px);
+}
+.p3-tile-big > * { position: relative; }
+.p3-tile-big h3 { font-size: clamp(1.9rem, 3vw, 2.5rem); }
+.p3-tile-big p { color: rgba(244,238,231,.85); font-size: 1.02rem; max-width: 32ch; }
+.p3-tile-big .p3-ico { background: rgba(251,248,244,.16); color: var(--cream); }
+.p3-tile-wide { grid-column: span 2; }
+.p3-tile-dark { background: var(--ink); color: var(--cream); border-color: transparent; }
+.p3-tile-dark p { color: rgba(244,238,231,.7); }
+.p3-tile-dark .p3-ico { background: rgba(251,248,244,.1); color: var(--mocca-soft); }
+
+.portfolio { background: var(--paper); }
+
+/* ---------- Contacto: claro con formulario en tinta ---------- */
+.contact { background: var(--cream); color: var(--ink); }
+.contact::before { display: none; }
+.contact .sec-no-light { color: var(--mocca-dark); }
+.contact .eyebrow-light { color: var(--mocca-dark); }
+.contact .lead-light { color: var(--muted); }
+.contact-details li {
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  border-radius: 16px; padding: 14px 16px; align-items: center;
+}
+.contact-details a:hover { color: var(--mocca-dark); }
+.contact-form { background: var(--ink); color: var(--cream); border-radius: 26px; }
+.contact-form .field input, .contact-form .field textarea { background: rgba(251,248,244,.06); border-color: rgba(251,248,244,.14); color: var(--cream); }
+.contact-form .field input:focus, .contact-form .field textarea:focus { background: rgba(251,248,244,.1); border-color: var(--mocca-soft); }
+.contact-form .btn-primary { background: var(--mocca-soft); color: var(--ink); }
+.contact-form .btn-primary::before { background: var(--cream); }
+
+@media (max-width: 980px) {
+  .p3-bento { grid-template-columns: 1fr 1fr; }
+  .p3-tile-big { grid-column: span 2; grid-row: auto; }
+  .p3-float { right: 12px; }
+}
+@media (max-width: 720px) { .fachadas-list { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) {
+  .p3-bento { grid-template-columns: 1fr; }
+  .p3-tile-big, .p3-tile-wide { grid-column: span 1; }
+  .p3-float { width: 170px; padding: 16px 18px; bottom: 20px; }
+  .p3-float strong { font-size: 2.3rem; }
+}

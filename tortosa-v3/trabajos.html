@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajos | Tortosa, Rótulos, Fachadas y Reclamos Publicitarios en Valencia</title>
+  <meta name="description" content="Trabajos reales de Comercial Tortosa en Valencia: rótulos y fachadas, rotulación, regalos de empresa, textil publicitario y ropa laboral.">
+  <!-- Versión de prueba: que Google no la indexe -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#140F0B">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+
+<body>
+  <!-- Pantalla dedicada (como la antigua galería): cabecera fija con el servicio,
+       pestañas por servicio y la X para volver a la web. Sin menú ni pie. -->
+  <div class="works-screen">
+    <header class="works-head">
+      <div class="wrap works-head-in">
+        <div>
+          <span class="label"><i class="dot"></i>Trabajo real</span>
+          <h1 id="works-title">Trabajos</h1>
+          <p id="works-sub"></p>
+        </div>
+        <a class="icon-btn" id="works-close" href="index.html#servicios" aria-label="Cerrar y volver a servicios">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </a>
+      </div>
+      <div class="wrap">
+        <!-- Pestañas: una por servicio (se generan desde portfolio-data.js) -->
+        <div class="works-tabs" role="tablist" aria-label="Servicios" id="works-tabs"></div>
+        <div class="works-filters" role="group" aria-label="Filtrar por tipo de trabajo" id="works-filters"></div>
+      </div>
+    </header>
+
+    <main class="wrap works-body" id="inicio">
+      <div class="gal-grid" id="works-grid" role="tabpanel"></div>
+    </main>
+  </div>
+
+  <!-- ================= VISOR ================= -->
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Visor de imágenes" hidden>
+    <div class="lb-top">
+      <span id="lb-cat"></span>
+      <button class="icon-btn" id="lb-close" type="button" aria-label="Cerrar visor">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="lb-stage">
+      <img id="lb-img" alt="">
+      <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Siguiente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="lb-bottom"><span id="lb-counter"></span></div>
+  </div>
+
+  <script src="portfolio-data.js" defer></script>
+  <script src="trabajos.js" defer></script>
+</body>
+</html>

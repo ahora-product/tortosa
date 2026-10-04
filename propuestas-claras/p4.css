@@ -1,0 +1,80 @@
+/* ============================================================
+   PROPUESTA 4 — "Secciones flotantes"
+   Cada sección es una gran tarjeta redondeada que flota sobre un
+   fondo arena. Fachadas mantiene el oscuro, pero ya no ocupa
+   todo el ancho: es una pieza, no un muro.
+   Novedades: tarjetas con inclinación 3D al pasar el ratón y
+   brillo que sigue al cursor.
+   ============================================================ */
+
+body { background: var(--sand); }
+main { padding: 14px 14px 0; display: flex; flex-direction: column; gap: 14px; }
+
+.hero-stage, main > .section {
+  border-radius: 36px; overflow: hidden; position: relative;
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 30px 60px -50px rgba(22,18,15,.5);
+}
+
+.hero-stage {
+  background:
+    radial-gradient(70% 90% at 95% 0%, rgba(201,174,151,.6) 0%, transparent 60%),
+    var(--paper);
+}
+.hero-media .media-hero { border-radius: 28px; }
+
+.services { background: var(--cream); }
+.catalogs { background: var(--paper); }
+.portfolio { background: var(--cream); }
+
+/* Fachadas: la única tarjeta oscura (contraste puntual) */
+.fachadas { background: linear-gradient(150deg, #2b231d 0%, var(--ink) 100%); }
+
+/* Nosotros: mocca claro */
+.about { background: linear-gradient(150deg, #E7D7C8 0%, var(--mocca-soft) 100%); color: var(--ink); }
+.about::before { background: repeating-linear-gradient(90deg, rgba(22,18,15,.05) 0 1px, transparent 1px 34px); }
+.about .sec-no { color: var(--mocca-dark); }
+.about .eyebrow { color: var(--mocca-dark); }
+.about-copy p { color: rgba(22,18,15,.75); }
+.about-points li { color: var(--ink); }
+.about-points li::before { border-color: var(--ink); }
+.about .media { border-color: rgba(251,248,244,.5); }
+.about .btn-primary { background: var(--ink); color: var(--cream); }
+.about .btn-primary::before { background: var(--mocca-dark); }
+
+/* Contacto: papel, con los datos en mini-tarjetas */
+.contact { background: var(--paper); color: var(--ink); }
+.contact::before { background-image: repeating-linear-gradient(90deg, rgba(124,94,73,.07) 0 1px, transparent 1px 30px); }
+.contact .sec-no-light { color: var(--mocca-dark); }
+.contact .eyebrow-light { color: var(--mocca-dark); }
+.contact .lead-light { color: var(--muted); }
+.contact-details { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.contact-details li {
+  flex-direction: column; gap: 8px; color: var(--ink);
+  background: var(--cream); border-radius: 18px; padding: 16px 18px; font-size: .94rem;
+  transition: transform .4s var(--ease), background .4s ease;
+}
+.contact-details li:hover { transform: translateY(-4px); background: var(--sand); }
+.contact-details a:hover { color: var(--mocca-dark); }
+.contact-form { background: var(--cream); box-shadow: none; border: 1px solid var(--line); }
+.contact-form .field input, .contact-form .field textarea { background: var(--paper); }
+
+/* El pie también se separa como tarjeta */
+.site-footer { margin: 14px; border-radius: 36px; }
+
+/* ---------- NUEVO: inclinación 3D + brillo ---------- */
+.p4-tilt { position: relative; will-change: transform; }
+.p4-tilt::after {
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.28), transparent 60%);
+  opacity: 0; transition: opacity .35s ease;
+}
+.p4-tilt:hover::after { opacity: 1; }
+.service-card.p4-tilt:hover { transform: none; } /* el giro lo pone el JS */
+.catalog-card:hover .catalog-cover.p4-tilt { transform: none; }
+
+@media (max-width: 720px) {
+  main { padding: 8px 8px 0; gap: 8px; }
+  .hero-stage, main > .section, .site-footer { border-radius: 24px; }
+  .site-footer { margin: 8px; }
+  .contact-details { grid-template-columns: 1fr; }
+}
