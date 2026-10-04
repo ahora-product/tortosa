@@ -7,7 +7,7 @@
 (function () {
   'use strict';
 
-  var BASE = '../assets/portfolio/';
+  var BASE = 'assets/portfolio/';
   var DATA = (window.PORTFOLIO || []).filter(function (s) { return count(s) > 0; }); // sin fotos (Imprenta) no sale
   if (!DATA.length) return;
 
