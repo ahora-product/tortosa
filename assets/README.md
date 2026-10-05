@@ -20,3 +20,4 @@ Aquí van las fotos de la web. **El nombre de cada archivo tiene que ser exactam
 - Usa **JPG** para fotografías (pesan menos) y **PNG** solo si el logo necesita fondo transparente.
 - Intenta que cada foto pese **menos de 300 KB** para que la web cargue rápida. Puedes comprimirlas gratis en [squoosh.app](https://squoosh.app) o [tinypng.com](https://tinypng.com).
 - La `og-image.jpg` es la miniatura que se ve cuando compartes la web por WhatsApp o redes. Que se vea el logo y un rótulo bonito.
+- **Después de añadir o cambiar fotos, ejecuta `npm run imagenes`** (la primera vez, `npm install`). Crea al lado de cada foto sus copias `.webp` optimizadas (`foto-400.webp`, `foto-800.webp`, `foto.webp`…), que son las que carga la web; el JPG queda como respaldo. Sin ellas, las fotos nuevas de la galería de trabajos no se verán.

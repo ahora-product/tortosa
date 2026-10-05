@@ -21,6 +21,8 @@
 
   function count(s) { return s.groups.reduce(function (n, g) { return n + g.files.length; }, 0); }
   function itemsOf(g) { return g.files.map(function (f) { return { src: BASE + f, cat: g.name }; }); }
+  // Versiones WebP generadas por herramientas/optimizar-imagenes.js (foto-400.webp, foto-800.webp, foto.webp)
+  function webp(src, w) { return src.replace(/\.(jpe?g|png)$/i, w ? '-' + w + '.webp' : '.webp'); }
   // Varias subcarpetas intercaladas para que se vea variedad desde el principio
   function mix(lists) {
     var out = [], max = Math.max.apply(null, lists.map(function (l) { return l.length; }));
@@ -36,7 +38,9 @@
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'gal-item';
       b.style.animationDelay = (k % 12) * 40 + 'ms';
-      b.innerHTML = '<img src="' + it.src + '" alt="Trabajo de ' + it.cat.toLowerCase() + ' realizado por Comercial Tortosa" loading="lazy" decoding="async"><span class="gal-tag">' + it.cat + '</span>';
+      // Miniatura ligera para la rejilla; la foto grande solo se carga en el visor
+      b.innerHTML = '<picture><source type="image/webp" sizes="(max-width: 640px) 50vw, (max-width: 1100px) 34vw, 320px" srcset="' + webp(it.src, 400) + ' 400w, ' + webp(it.src, 800) + ' 800w">' +
+        '<img src="' + it.src + '" alt="Trabajo de ' + it.cat.toLowerCase() + ' realizado por Comercial Tortosa" loading="lazy" decoding="async"></picture><span class="gal-tag">' + it.cat + '</span>';
       b.addEventListener('click', function () { lbOpen(list, k, b); });
       frag.appendChild(b);
     });
@@ -116,11 +120,14 @@
   function lbShow(i) {
     lbIdx = (i + lbList.length) % lbList.length;
     var it = lbList[lbIdx];
-    lbImg.src = it.src;
+    lbImg.onerror = function () { lbImg.onerror = null; lbImg.src = it.src; }; // sin WebP → JPG original
+    lbImg.src = webp(it.src);
     lbImg.alt = 'Trabajo de ' + it.cat.toLowerCase() + ' realizado por Comercial Tortosa';
     document.getElementById('lb-cat').textContent = it.cat;
     document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbList.length;
-    new Image().src = lbList[(lbIdx + 1) % lbList.length].src; // precarga la siguiente
+    // precarga la siguiente y la anterior para que el paso sea instantáneo
+    new Image().src = webp(lbList[(lbIdx + 1) % lbList.length].src);
+    new Image().src = webp(lbList[(lbIdx - 1 + lbList.length) % lbList.length].src);
   }
   function lbOpen(list, i, opener) {
     lbList = list; lastFocus = opener; lbShow(i);

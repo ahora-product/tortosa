@@ -7,15 +7,60 @@
   <meta name="description" content="Rótulos, fachadas, rotulación, textil publicitario y regalos de empresa en Valencia. Más de 25 años dando imagen a tu negocio: del diseño a la instalación.">
   <!-- Versión de prueba: que Google no la indexe -->
   <meta name="robots" content="noindex, follow">
-  <meta name="theme-color" content="#140F0B">
+  <meta name="theme-color" content="#2A211B">
   <link rel="canonical" href="https://comercialtortosa.com/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Vista previa al compartir (WhatsApp, redes sociales) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="Comercial Tortosa">
+  <meta property="og:title" content="Tortosa | Rótulos, Fachadas y Reclamos Publicitarios en Valencia">
+  <meta property="og:description" content="Rótulos, fachadas, rotulación, textil publicitario y regalos de empresa en Valencia. Más de 25 años dando imagen a tu negocio.">
+  <meta property="og:url" content="https://comercialtortosa.com/">
+  <meta property="og:image" content="https://comercialtortosa.com/assets/servicios/rotulos-fachadas.jpg">
+  <meta property="og:image:width" content="1448">
+  <meta property="og:image:height" content="1086">
+  <meta property="og:image:alt" content="Rótulos, letras corpóreas y fachadas realizados por Tortosa">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Datos del negocio para Google (búsquedas locales y ficha) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Comercial Tortosa",
+    "description": "Rótulos, fachadas, rotulación, textil publicitario, ropa laboral, regalos de empresa e imprenta en Valencia.",
+    "url": "https://comercialtortosa.com/",
+    "logo": "https://comercialtortosa.com/assets/brand/logo.svg",
+    "image": "https://comercialtortosa.com/assets/brand/fachada.jpg",
+    "telephone": "+34963570111",
+    "email": "david@comercialtortosa.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Avda. Primero de Mayo, 53b",
+      "postalCode": "46017",
+      "addressLocality": "Valencia",
+      "addressRegion": "Valencia",
+      "addressCountry": "ES"
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:30", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "16:30", "closes": "20:00" }
+    ],
+    "areaServed": "Valencia",
+    "hasMap": "https://www.google.com/maps/place/Comercial+Tortosa/data=!4m2!3m1!1s0xd604f222988e56d:0xd17663ab83b80e8d",
+    "sameAs": ["https://www.instagram.com/comercialtortosa/"]
+  }
+  </script>
 
   <!-- Tipografía de marca: DM Serif Display (titulares) + DM Sans (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
 
+  <!-- Foto principal: se pide en paralelo con el CSS para que aparezca cuanto antes -->
+  <link rel="preload" as="image" type="image/webp" href="assets/brand/fachada.webp" imagesrcset="assets/brand/fachada-560.webp 560w, assets/brand/fachada-840.webp 840w, assets/brand/fachada.webp 1122w" imagesizes="(max-width: 900px) 100vw, 600px" fetchpriority="high">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add('js');</script>
 </head>
@@ -32,7 +77,7 @@
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
         <a href="#servicios">Servicios</a>
-        <a href="#servicios">Trabajos</a>
+        <a href="trabajos.html">Trabajos</a>
         <a href="#catalogos">Catálogos</a>
         <a href="#nosotros">Nosotros</a>
         <a href="#contacto">Contacto</a>
@@ -44,7 +89,7 @@
     </div>
     <nav class="menu-movil" id="menu-movil" aria-label="Navegación móvil" hidden>
       <a href="#servicios">Servicios</a>
-      <a href="#servicios">Trabajos</a>
+      <a href="trabajos.html">Trabajos</a>
       <a href="#catalogos">Catálogos</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
@@ -58,16 +103,23 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <span class="label reveal"><i class="dot"></i>Reclamos publicitarios · Valencia · +25 años</span>
+          <span class="label reveal">Reclamos publicitarios · Valencia · +25 años</span>
           <h1 id="hero-title" class="hero-title reveal">La imagen que hace <em>destacar</em> tu negocio</h1>
           <p class="hero-lead reveal">Diseñamos, fabricamos e instalamos rótulos, fachadas, rotulación, textil y regalos de empresa. Damos imagen a tu marca de principio a fin.</p>
-          <div class="reveal">
+          <div class="hero-actions reveal">
             <a class="btn btn-primary hero-cta" href="#contacto">Pide presupuesto <span class="btn-arrow" aria-hidden="true">↗</span></a>
+            <a class="hero-reviews" href="https://www.google.com/maps/place/Comercial+Tortosa/data=!4m2!3m1!1s0xd604f222988e56d:0xd17663ab83b80e8d" target="_blank" rel="noopener" aria-label="Valoración 4,8 de 5 en Google: ver reseñas">
+              <span class="hero-reviews-stars" aria-hidden="true">★★★★★</span>
+              <span><strong>4,8</strong> en Google · Ver reseñas ↗</span>
+            </a>
           </div>
         </div>
         <div class="hero-visual reveal">
           <div class="hero-media">
-            <img src="assets/brand/fachada.jpg" alt="Fachada de la tienda Comercial Tortosa en Valencia con rótulo de letras corpóreas" loading="eager">
+            <picture>
+              <source type="image/webp" srcset="assets/brand/fachada-560.webp 560w, assets/brand/fachada-840.webp 840w, assets/brand/fachada.webp 1122w" sizes="(max-width: 900px) 100vw, 600px">
+              <img src="assets/brand/fachada.jpg" width="1122" height="1402" alt="Fachada de la tienda Comercial Tortosa en Valencia con rótulo de letras corpóreas" fetchpriority="high" decoding="async">
+            </picture>
           </div>
           <div class="hero-badge" role="img" aria-label="25 años a tu lado">
             <svg class="hero-badge-ring" viewBox="0 0 140 140" aria-hidden="true">
@@ -86,7 +138,7 @@
       <div class="brands" aria-label="Marcas con las que trabajamos">
         <div class="wrap">
           <div class="label-row">
-            <span class="label"><i class="dot"></i>Trabajamos con las mejores marcas</span>
+            <span class="label">Trabajamos con las mejores marcas</span>
           </div>
         </div>
         <!-- Cada logo enlaza a la web del proveedor. La segunda tanda es solo el bucle visual de la cinta. -->
@@ -116,7 +168,7 @@
       <div class="wrap">
         <div class="section-head split">
           <div>
-            <span class="label"><i class="dot"></i>Lo que hacemos</span>
+            <span class="label">Lo que hacemos</span>
             <h2 id="servicios-title" class="reveal">Todo para que tu marca se vea</h2>
           </div>
           <p class="section-sub reveal">Una sola empresa para la imagen completa de tu negocio, dentro y fuera.</p>
@@ -124,7 +176,10 @@
 
         <div class="svc-panels reveal">
           <article class="svc-panel is-open" tabindex="0">
-            <img src="assets/servicios/rotulos-fachadas.jpg" alt="Ejemplos de rótulos, letras corpóreas, fachadas y escaparates diseñados por Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/rotulos-fachadas-640.webp 640w, assets/servicios/rotulos-fachadas-1000.webp 1000w, assets/servicios/rotulos-fachadas.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/rotulos-fachadas.jpg" width="1448" height="1086" alt="Ejemplos de rótulos, letras corpóreas, fachadas y escaparates diseñados por Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Rótulos y Fachadas</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">01</span>
@@ -134,7 +189,10 @@
             </div>
           </article>
           <article class="svc-panel" tabindex="0">
-            <img src="assets/servicios/rotulacion.jpg" alt="Ejemplos de rotulación de vehículos, vinilos, lonas y señalética con el logo de Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/rotulacion-640.webp 640w, assets/servicios/rotulacion-1000.webp 1000w, assets/servicios/rotulacion.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/rotulacion.jpg" width="1448" height="1086" alt="Ejemplos de rotulación de vehículos, vinilos, lonas y señalética con el logo de Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Rotulación</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">02</span>
@@ -144,7 +202,10 @@
             </div>
           </article>
           <article class="svc-panel" tabindex="0">
-            <img src="assets/servicios/regalos-empresa.jpg" alt="Ejemplos de regalos de empresa personalizados con el logo de Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/regalos-empresa-640.webp 640w, assets/servicios/regalos-empresa-1000.webp 1000w, assets/servicios/regalos-empresa.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/regalos-empresa.jpg" width="1448" height="1086" alt="Ejemplos de regalos de empresa personalizados con el logo de Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Regalos de empresa</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">03</span>
@@ -154,7 +215,10 @@
             </div>
           </article>
           <article class="svc-panel" tabindex="0">
-            <img src="assets/servicios/textil-publicitario.jpg" alt="Ejemplos de camisetas, sudaderas, polos y gorras con el logo de Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/textil-publicitario-640.webp 640w, assets/servicios/textil-publicitario-1000.webp 1000w, assets/servicios/textil-publicitario.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/textil-publicitario.jpg" width="1448" height="1086" alt="Ejemplos de camisetas, sudaderas, polos y gorras con el logo de Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Textil publicitario</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">04</span>
@@ -164,7 +228,10 @@
             </div>
           </article>
           <article class="svc-panel" tabindex="0">
-            <img src="assets/servicios/ropa-laboral.jpg" alt="Ejemplos de uniformes, ropa laboral y prendas de trabajo con el logo de Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/ropa-laboral-640.webp 640w, assets/servicios/ropa-laboral-1000.webp 1000w, assets/servicios/ropa-laboral.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/ropa-laboral.jpg" width="1448" height="1086" alt="Ejemplos de uniformes, ropa laboral y prendas de trabajo con el logo de Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Ropa laboral</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">05</span>
@@ -174,12 +241,16 @@
             </div>
           </article>
           <article class="svc-panel" tabindex="0">
-            <img src="assets/servicios/imprenta.jpg" alt="Ejemplos de tarjetas, flyers, catálogos, carpetas y material impreso con el logo de Tortosa" loading="lazy">
+            <picture>
+              <source type="image/webp" srcset="assets/servicios/imprenta-640.webp 640w, assets/servicios/imprenta-1000.webp 1000w, assets/servicios/imprenta.webp 1448w" sizes="(max-width: 900px) 100vw, 900px">
+              <img src="assets/servicios/imprenta.jpg" width="1448" height="1086" alt="Ejemplos de tarjetas, flyers, catálogos, carpetas y material impreso con el logo de Tortosa" loading="lazy" decoding="async">
+            </picture>
             <span class="svc-panel-v" aria-hidden="true">Imprenta</span>
             <div class="svc-panel-in">
               <span class="svc-panel-no">06</span>
               <h3>Imprenta</h3>
               <p>Tarjetas, flyers, catálogos y todo el material impreso de tu empresa.</p>
+              <a class="svc-link" href="#contacto">Pide presupuesto <span aria-hidden="true">→</span></a>
             </div>
           </article>
         </div>
@@ -197,7 +268,7 @@
     <section class="section fachadas" id="fachadas" aria-labelledby="fachadas-title">
       <div class="wrap fachadas-grid">
         <div class="fachadas-copy">
-          <span class="label"><i class="dot"></i>Somos expertos</span>
+          <span class="label">Somos expertos</span>
           <h2 id="fachadas-title" class="reveal">Tu fachada es tu <em>mejor comercial</em></h2>
           <p class="fachadas-lead reveal">La primera impresión de tu negocio entra por los ojos. Diseñamos, fabricamos e instalamos fachadas y rótulos que hacen que te vean, te recuerden y entren.</p>
           <ul class="fachadas-checks reveal">
@@ -213,117 +284,61 @@
         <div class="fachadas-arch reveal">
           <div class="fachadas-cols">
             <div class="fachadas-col">
-              <img src="assets/fachadas-columnas/fachada-01.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-04.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-07.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-10.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-13.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-16.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-01-300.webp 300w, assets/fachadas-columnas/fachada-01.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-01.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-04-300.webp 300w, assets/fachadas-columnas/fachada-04.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-04.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-07-300.webp 300w, assets/fachadas-columnas/fachada-07.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-07.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-10-300.webp 300w, assets/fachadas-columnas/fachada-10.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-10.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-13-300.webp 300w, assets/fachadas-columnas/fachada-13.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-13.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-16-300.webp 300w, assets/fachadas-columnas/fachada-16.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-16.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
               <!-- copia para el bucle infinito -->
-              <img src="assets/fachadas-columnas/fachada-01.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-04.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-07.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-10.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-13.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-16.jpg" alt="" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-01-300.webp 300w, assets/fachadas-columnas/fachada-01.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-01.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-04-300.webp 300w, assets/fachadas-columnas/fachada-04.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-04.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-07-300.webp 300w, assets/fachadas-columnas/fachada-07.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-07.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-10-300.webp 300w, assets/fachadas-columnas/fachada-10.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-10.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-13-300.webp 300w, assets/fachadas-columnas/fachada-13.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-13.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-16-300.webp 300w, assets/fachadas-columnas/fachada-16.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-16.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
             </div>
             <div class="fachadas-col down">
-              <img src="assets/fachadas-columnas/fachada-02.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-05.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-08.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-11.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-14.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-17.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-02-300.webp 300w, assets/fachadas-columnas/fachada-02.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-02.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-05-300.webp 300w, assets/fachadas-columnas/fachada-05.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-05.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-08-300.webp 300w, assets/fachadas-columnas/fachada-08.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-08.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-11-300.webp 300w, assets/fachadas-columnas/fachada-11.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-11.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-14-300.webp 300w, assets/fachadas-columnas/fachada-14.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-14.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-17-300.webp 300w, assets/fachadas-columnas/fachada-17.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-17.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
               <!-- copia para el bucle infinito -->
-              <img src="assets/fachadas-columnas/fachada-02.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-05.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-08.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-11.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-14.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-17.jpg" alt="" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-02-300.webp 300w, assets/fachadas-columnas/fachada-02.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-02.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-05-300.webp 300w, assets/fachadas-columnas/fachada-05.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-05.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-08-300.webp 300w, assets/fachadas-columnas/fachada-08.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-08.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-11-300.webp 300w, assets/fachadas-columnas/fachada-11.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-11.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-14-300.webp 300w, assets/fachadas-columnas/fachada-14.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-14.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-17-300.webp 300w, assets/fachadas-columnas/fachada-17.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-17.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
             </div>
             <div class="fachadas-col">
-              <img src="assets/fachadas-columnas/fachada-03.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-06.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-09.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-12.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-15.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-18.jpg" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-03-300.webp 300w, assets/fachadas-columnas/fachada-03.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-03.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-06-300.webp 300w, assets/fachadas-columnas/fachada-06.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-06.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-09-300.webp 300w, assets/fachadas-columnas/fachada-09.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-09.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-12-300.webp 300w, assets/fachadas-columnas/fachada-12.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-12.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-15-300.webp 300w, assets/fachadas-columnas/fachada-15.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-15.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-18-300.webp 300w, assets/fachadas-columnas/fachada-18.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-18.jpg" width="600" height="800" alt="Fachada realizada por Tortosa" loading="lazy" decoding="async"></picture>
               <!-- copia para el bucle infinito -->
-              <img src="assets/fachadas-columnas/fachada-03.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-06.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-09.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-12.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-15.jpg" alt="" loading="lazy" decoding="async">
-              <img src="assets/fachadas-columnas/fachada-18.jpg" alt="" loading="lazy" decoding="async">
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-03-300.webp 300w, assets/fachadas-columnas/fachada-03.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-03.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-06-300.webp 300w, assets/fachadas-columnas/fachada-06.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-06.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-09-300.webp 300w, assets/fachadas-columnas/fachada-09.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-09.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-12-300.webp 300w, assets/fachadas-columnas/fachada-12.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-12.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-15-300.webp 300w, assets/fachadas-columnas/fachada-15.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-15.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/fachadas-columnas/fachada-18-300.webp 300w, assets/fachadas-columnas/fachada-18.webp 600w" sizes="(max-width: 900px) 33vw, 220px"><img src="assets/fachadas-columnas/fachada-18.jpg" width="600" height="800" alt="" loading="lazy" decoding="async"></picture>
             </div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- ================= NOSOTROS ================= -->
-    <section class="section about" id="nosotros" aria-labelledby="about-title">
-      <div class="wrap">
-        <div class="about-grid">
-          <div class="about-copy">
-            <span class="label"><i class="dot"></i>Quiénes somos</span>
-            <h2 id="about-title" class="about-title reveal">Cerca de ti <em>desde hace más de 25 años</em></h2>
-            <div class="about-text reveal">
-              <p>En Comercial Tortosa llevamos más de 25 años dando imagen a los negocios de Valencia. Cuidamos cada detalle con la misma seriedad y compromiso del primer día, siempre a la vanguardia en nuevas tecnologías de impresión y rotulación.</p>
-              <p>Desde un regalo de empresa hasta la fachada completa de tu local, somos tu único proveedor: diseño, producción e instalación bajo un mismo techo.</p>
-            </div>
-            <div class="reveal">
-              <a class="btn btn-primary about-cta" href="#contacto">Hablemos de tu proyecto <span class="btn-arrow" aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <figure class="about-photo reveal">
-            <img src="assets/tienda-interior.jpg" alt="Interior de la tienda de Comercial Tortosa en Valencia" loading="lazy">
-            <figcaption>Nuestra tienda · Avda. Primero de Mayo, 53b</figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PROCESO ================= -->
-    <section class="section process" aria-labelledby="process-title">
-      <div class="wrap">
-        <div class="section-head">
-          <span class="label"><i class="dot"></i>Cómo trabajamos</span>
-          <h2 id="process-title" class="reveal">Un proceso claro, de principio a fin</h2>
-        </div>
-        <ol class="steps">
-          <li class="step reveal">
-            <span class="step-no">01</span>
-            <h3>Escuchamos</h3>
-            <p>Nos cuentas tu negocio y lo que necesitas. Te asesoramos con honestidad.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-no">02</span>
-            <h3>Diseñamos</h3>
-            <p>Preparamos la propuesta y el presupuesto, sin compromiso.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-no">03</span>
-            <h3>Fabricamos</h3>
-            <p>Producimos con materiales y acabados de calidad, cumpliendo plazos.</p>
-          </li>
-          <li class="step reveal">
-            <span class="step-no">04</span>
-            <h3>Instalamos</h3>
-            <p>Lo montamos nosotros y nos hacemos cargo de todo.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
 
     <!-- ================= CATÁLOGOS ================= -->
     <section class="section catalogs" id="catalogos" aria-labelledby="catalogs-title">
       <div class="wrap">
         <div class="section-head split">
           <div>
-            <span class="label"><i class="dot"></i>Catálogos</span>
+            <span class="label">Catálogos</span>
             <h2 id="catalogs-title" class="reveal">Miles de productos para personalizar</h2>
           </div>
           <p class="section-sub reveal">Hojéalos con calma, apunta lo que te guste y pídenos presupuesto. Cada catálogo se abre en una pestaña nueva.</p>
@@ -362,12 +377,71 @@
       </div>
     </section>
 
+    <!-- ================= NOSOTROS ================= -->
+    <section class="section about" id="nosotros" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="about-copy">
+            <span class="label">Quiénes somos</span>
+            <h2 id="about-title" class="about-title reveal">Cerca de ti <em>desde hace más de 25 años</em></h2>
+            <div class="about-text reveal">
+              <p>En Comercial Tortosa llevamos más de 25 años dando imagen a los negocios de Valencia. Cuidamos cada detalle con la misma seriedad y compromiso del primer día, siempre a la vanguardia en nuevas tecnologías de impresión y rotulación.</p>
+              <p>Desde un regalo de empresa hasta la fachada completa de tu local, somos tu único proveedor: diseño, producción e instalación bajo un mismo techo.</p>
+            </div>
+            <div class="reveal">
+              <a class="btn btn-primary about-cta" href="#contacto">Hablemos de tu proyecto <span class="btn-arrow" aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <figure class="about-photo reveal">
+            <picture>
+              <source type="image/webp" srcset="assets/tienda-interior-400.webp 400w, assets/tienda-interior.webp 765w" sizes="(max-width: 900px) 100vw, 560px">
+              <img src="assets/tienda-interior.jpg" width="765" height="1020" alt="Interior de la tienda de Comercial Tortosa en Valencia" loading="lazy" decoding="async">
+            </picture>
+            <figcaption>Nuestra tienda · Avda. Primero de Mayo, 53b</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROCESO ================= -->
+    <section class="section process" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">Cómo trabajamos</span>
+          <h2 id="process-title" class="reveal">Un proceso claro, de principio a fin</h2>
+        </div>
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step-no">01</span>
+            <h3>Escuchamos</h3>
+            <p>Nos cuentas tu negocio y lo que necesitas. Te asesoramos con honestidad.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">02</span>
+            <h3>Diseñamos</h3>
+            <p>Preparamos la propuesta y el presupuesto, sin compromiso.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">03</span>
+            <h3>Fabricamos</h3>
+            <p>Producimos con materiales y acabados de calidad, cumpliendo plazos.</p>
+          </li>
+          <li class="step reveal">
+            <span class="step-no">04</span>
+            <h3>Instalamos</h3>
+            <p>Lo montamos nosotros y nos hacemos cargo de todo.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
     <!-- ================= CONTACTO ================= -->
     <section class="section contact" id="contacto" aria-labelledby="contact-title">
       <div class="wrap">
         <div class="contact-grid">
           <div class="contact-copy">
-            <span class="label"><i class="dot"></i>Contacto</span>
+            <span class="label">Contacto</span>
             <h2 id="contact-title">Cuéntanos tu <em>proyecto</em></h2>
             <p>Pide presupuesto sin compromiso. Te respondemos lo antes posible.</p>
             <ul class="contact-list">
@@ -375,16 +449,18 @@
               <li><span>Email</span><a href="mailto:david@comercialtortosa.com">david@comercialtortosa.com</a></li>
               <li><span>Tienda</span><a href="https://maps.google.com/?q=Avda.+Primero+de+Mayo+53b+46017+Valencia" target="_blank" rel="noopener">Avda. Primero de Mayo, 53b</a></li>
               <li><span>Horario</span><span>L–V · 9:30–14 y 16:30–20</span></li>
+              <li><span>Opiniones</span><a href="https://www.google.com/maps/place/Comercial+Tortosa/data=!4m2!3m1!1s0xd604f222988e56d:0xd17663ab83b80e8d" target="_blank" rel="noopener">★ 4,8 en Google · Ver reseñas</a></li>
             </ul>
           </div>
           <form class="contact-form" id="contact-form" novalidate>
             <div class="field">
               <span class="flabel">¿Qué necesitas?</span>
               <div class="chips" role="group" aria-label="Tipo de trabajo">
-                <label><input type="checkbox" name="tipo" value="Fachada"><span>Fachada</span></label>
-                <label><input type="checkbox" name="tipo" value="Rótulo"><span>Rótulo</span></label>
-                <label><input type="checkbox" name="tipo" value="Vinilo"><span>Vinilo</span></label>
+                <label><input type="checkbox" name="tipo" value="Rótulo o fachada"><span>Rótulo o fachada</span></label>
+                <label><input type="checkbox" name="tipo" value="Rotulación"><span>Rotulación</span></label>
+                <label><input type="checkbox" name="tipo" value="Regalos de empresa"><span>Regalos de empresa</span></label>
                 <label><input type="checkbox" name="tipo" value="Textil"><span>Textil</span></label>
+                <label><input type="checkbox" name="tipo" value="Ropa laboral"><span>Ropa laboral</span></label>
                 <label><input type="checkbox" name="tipo" value="Imprenta"><span>Imprenta</span></label>
                 <label><input type="checkbox" name="tipo" value="Otro"><span>Otro</span></label>
               </div>

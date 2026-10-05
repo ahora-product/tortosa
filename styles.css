@@ -40,7 +40,9 @@ body {
   color: var(--ink); background: var(--cream);
   -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
-img { display: block; max-width: 100%; }
+img { display: block; max-width: 100%; height: auto; }
+/* <picture> solo elige el formato (WebP o JPG): no participa en el diseño */
+picture { display: contents; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 [hidden] { display: none !important; }
@@ -144,7 +146,12 @@ h1 em, h2 em { font-style: italic; color: var(--mocca-dark); }
   margin: 24px 0;
 }
 .hero-lead { color: var(--muted); font-size: clamp(1rem, 1.25vw, 1.14rem); line-height: 1.6; max-width: 44ch; }
-.hero-cta { margin-top: 34px; }
+.hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 34px; }
+/* Enlace a las reseñas de Google junto al botón */
+.hero-reviews { display: inline-flex; flex-direction: column; gap: 2px; font-size: .9rem; color: var(--on-dark-muted); }
+.hero-reviews strong { color: var(--on-dark); font-weight: 600; }
+.hero-reviews-stars { color: var(--champagne); letter-spacing: 2px; font-size: .95rem; }
+.hero-reviews:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; }
 .hero-visual { position: relative; }
 .hero-media {
   position: relative; overflow: hidden; border-radius: var(--r-lg);
@@ -154,7 +161,7 @@ h1 em, h2 em { font-style: italic; color: var(--mocca-dark); }
 
 /* Sello "25 años a tu lado" girando sobre la esquina de la foto */
 .hero-badge {
-  position: absolute; bottom: -46px; left: -42px; z-index: 3;
+  position: absolute; bottom: -46px; right: -42px; z-index: 3;
   width: 142px; height: 142px; border-radius: 50%;
   display: grid; place-items: center;
   color: var(--cream); text-align: center;
@@ -214,7 +221,7 @@ h1 em, h2 em { font-style: italic; color: var(--mocca-dark); }
   border-radius: var(--r); background: var(--brown-2, #1C1511);
   transition: flex .7s var(--ease);
 }
-.svc-panel > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.45) saturate(.8); transition: filter .6s ease; }
+.svc-panel > picture > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.45) saturate(.8); transition: filter .6s ease; }
 .svc-panel::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,9,7,.97) 0%, rgba(13,9,7,.82) 34%, rgba(13,9,7,0) 72%); pointer-events: none; }
 .svc-panel-v {
   position: absolute; left: 50%; bottom: 28px; z-index: 2;
@@ -227,17 +234,17 @@ h1 em, h2 em { font-style: italic; color: var(--mocca-dark); }
   opacity: 0; visibility: hidden; transform: translateY(16px);
   transition: opacity .4s ease .15s, transform .6s var(--ease) .15s, visibility 0s .7s;
 }
-.svc-panel-no { font-size: .85rem; font-weight: 500; letter-spacing: .04em; color: var(--champagne, #C6A97E); }
+.svc-panel-no { font-size: .85rem; font-weight: 500; letter-spacing: .04em; color: var(--champagne, #B7937B); }
 .svc-panel-in h3 { font-size: clamp(1.8rem, 3vw, 2.6rem); margin-top: 8px; color: var(--on-dark, #E9DFCC); }
 .svc-panel-in p { color: var(--on-dark-muted, rgba(233,223,204,.62)); margin-top: 8px; max-width: 40ch; }
 .svc-link {
   display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 0;
   background: none; border: 0; cursor: pointer;
-  font: 600 1rem var(--font); color: var(--champagne, #C6A97E); transition: gap .3s var(--ease);
+  font: 600 1rem var(--font); color: var(--champagne, #B7937B); transition: gap .3s var(--ease);
 }
 .svc-link:hover { gap: 16px; }
 .svc-panel.is-open { flex: 5; cursor: default; }
-.svc-panel.is-open > img { filter: none; }
+.svc-panel.is-open > picture > img { filter: none; }
 .svc-panel.is-open .svc-panel-v { opacity: 0; }
 .svc-panel.is-open .svc-panel-in { opacity: 1; visibility: visible; transform: none; transition-delay: .15s, .15s, 0s; }
 
@@ -261,9 +268,9 @@ h1 em, h2 em { font-style: italic; color: var(--mocca-dark); }
   font: 500 .95rem var(--font); color: var(--on-dark-muted, rgba(233,223,204,.62));
   transition: color .25s ease, border-color .25s ease;
 }
-.works-tab small { font-size: .75rem; color: var(--champagne, #C6A97E); }
+.works-tab small { font-size: .75rem; color: var(--champagne, #B7937B); }
 .works-tab:hover { color: var(--on-dark, #E9DFCC); }
-.works-tab[aria-selected="true"] { color: var(--on-dark, #E9DFCC); border-bottom-color: var(--champagne, #C6A97E); }
+.works-tab[aria-selected="true"] { color: var(--on-dark, #E9DFCC); border-bottom-color: var(--champagne, #B7937B); }
 .works-filters { display: flex; gap: 8px; overflow-x: auto; padding: 14px 0 16px; scrollbar-width: none; border-top: 1px solid var(--line-dark, rgba(233,223,204,.10)); }
 .works-filters::-webkit-scrollbar { display: none; }
 .works-filters:empty { display: none; }
@@ -275,7 +282,7 @@ a.icon-btn { color: var(--brown, #140F0B); }
   font: 500 .9rem var(--font); color: var(--on-dark-muted, rgba(233,223,204,.62));
   box-shadow: inset 0 0 0 1px rgba(233,223,204,.18); transition: background-color .25s ease, color .25s ease;
 }
-.gal-chip small { font-size: .75rem; color: var(--champagne, #C6A97E); }
+.gal-chip small { font-size: .75rem; color: var(--champagne, #B7937B); }
 .gal-chip:hover { color: var(--on-dark, #E9DFCC); }
 .gal-chip[aria-pressed="true"] { background: var(--ivory, #E9DFCC); color: var(--brown, #140F0B); box-shadow: none; }
 .gal-chip[aria-pressed="true"] small { color: var(--brown, #140F0B); }
@@ -309,7 +316,7 @@ a.icon-btn { color: var(--brown, #140F0B); }
 }
 .lb[hidden] { display: none !important; }
 .lb-top, .lb-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; }
-.lb-top span { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--champagne, #C6A97E); }
+.lb-top span { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--champagne, #B7937B); }
 .lb-stage { position: relative; display: grid; place-items: center; min-height: 0; padding: 0 76px; }
 .lb-stage img { max-width: 100%; max-height: calc(100vh - 170px); max-height: calc(100dvh - 170px); object-fit: contain; border-radius: 8px; user-select: none; }
 .lb-nav {
@@ -507,7 +514,7 @@ a.icon-btn { color: var(--brown, #140F0B); }
 @media (max-width: 640px) {
   .nav { padding-left: 18px; }
   .hero-media { aspect-ratio: 4 / 5; }
-  .hero-badge { width: 112px; height: 112px; left: -12px; bottom: -36px; }
+  .hero-badge { width: 112px; height: 112px; right: -12px; bottom: -36px; }
   .hero-badge-num { font-size: 3.35rem; }
   .hero-badge-text { font-size: .82rem; letter-spacing: .12em; }
   .gal-grid { columns: 2; column-gap: 8px; }
@@ -557,8 +564,8 @@ a.icon-btn { color: var(--brown, #140F0B); }
   --on-dark-faint: rgba(233,223,204,.30);
   --line-dark: rgba(233,223,204,.10);
 
-  /* Acento champán (sustituye al mocca rosado sobre oscuro) */
-  --champagne: #C6A97E;
+  /* Color principal de la marca (el del logo): todos los acentos */
+  --champagne: #B7937B;
 
   /* Superficies claras (formulario, menú móvil, etiquetas sobre foto) */
   --paper:   #EFE7D8;
@@ -635,8 +642,8 @@ h1 em, h2 em { color: var(--champagne); }
 .fachadas-checks li { display: flex; gap: 12px; align-items: center; font-weight: 500; }
 .fachadas-checks li::before {
   content: ""; flex: none; width: 24px; height: 24px; border-radius: 50%;
-  box-shadow: inset 0 0 0 1px rgba(198,169,126,.45);
-  background: no-repeat center / 12px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.5 2.4L10 3.3' fill='none' stroke='%23C6A97E' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  box-shadow: inset 0 0 0 1px rgba(183,147,123,.45);
+  background: no-repeat center / 12px url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.3l2.5 2.4L10 3.3' fill='none' stroke='%23B7937B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .fachadas-arch {
@@ -665,3 +672,51 @@ h1 em, h2 em { color: var(--champagne); }
 @media (prefers-reduced-motion: reduce) {
   .fachadas-col { animation: none; }
 }
+
+/* ============================================================
+   OSCURO MÁS SUAVE · PANELES FLOTANTES
+   Fondo marrón tostado (menos negro) y algunas secciones convertidas
+   en grandes paneles redondeados más claros para dar ritmo.
+   ============================================================ */
+:root {
+  --brown:   #2A211B;
+  --brown-2: #352A22;
+  --brown-3: #42352B;
+  --deep:    #201914;
+  --line-dark: rgba(233,223,204,.13);
+}
+.footer-word { background-color: #2F251E; }
+.hero-media, .about-photo { box-shadow: 0 30px 60px -30px rgba(0,0,0,.55); }
+
+/* Secciones-panel */
+.fachadas, .process, .catalogs {
+  margin: var(--space) max(12px, calc((100% - var(--wrap) - 80px) / 2)) 0;
+  padding: clamp(56px, 8vw, 104px) 0; border-radius: clamp(28px, 4vw, 48px);
+  background: var(--brown-2); box-shadow: inset 0 0 0 1px var(--line-dark);
+}
+.fachadas-arch { background: var(--brown-3); }
+.process .step { background: var(--brown-3); }
+
+/* Catálogos en marfil: el panel claro de la página */
+.catalogs { background: var(--ivory); color: var(--brown); box-shadow: none; }
+.catalogs .label { color: #8A6A44; }
+.catalogs h2 em { color: #8A6A44; }
+.catalogs .section-sub { color: rgba(20,15,11,.65); }
+.catalogs .cat-group { background: #F6F0E4; box-shadow: none; }
+.catalogs .cat-group a { border-top-color: rgba(20,15,11,.10); }
+.catalogs .cat-group a span { color: var(--champagne); }
+.catalogs .cat-group a:hover { color: #8A6A44; }
+
+/* Contacto: las tarjetas ocupan el mismo ancho que los paneles */
+.contact .wrap { max-width: none; padding-inline: max(12px, calc((100% - var(--wrap) - 80px) / 2)); }
+
+@media (max-width: 640px) {
+  .fachadas, .process, .catalogs { margin-inline: 8px; }
+  .contact .wrap { padding-inline: 8px; }
+}
+
+/* Etiquetas: sin punto, en mayúsculas espaciadas y en el color de la marca */
+.label { color: var(--champagne); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 600; }
+/* Sobre la tarjeta marfil de contacto el color de marca apenas se ve: allí, marrón */
+.contact-copy .label { color: var(--brown); }
+:focus-visible { outline-color: var(--champagne); }
