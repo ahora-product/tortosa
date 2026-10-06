@@ -63,7 +63,11 @@
     tabsEl.querySelectorAll('.works-tab').forEach(function (t) {
       var on = t.dataset.id === s.id;
       t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
-      if (on) t.scrollIntoView({ block: 'nearest', inline: 'center' });
+      // Centra la pestaña solo en horizontal (scrollIntoView también movía la página en vertical)
+      if (on) {
+        var r = t.getBoundingClientRect(), c = tabsEl.getBoundingClientRect();
+        tabsEl.scrollTo({ left: tabsEl.scrollLeft + (r.left - c.left) - (c.width - r.width) / 2, behavior: 'smooth' });
+      }
     });
     grid.setAttribute('aria-labelledby', 'tab-' + s.id);
     var lists = s.groups.map(itemsOf), all = mix(lists);

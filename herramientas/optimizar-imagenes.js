@@ -19,7 +19,7 @@ const QUALITY = 82; // WebP: sin pérdida visible y ~60-80 % menos peso que el J
 
 // carpeta → anchos que se generan (null = tamaño original)
 const JOBS = [
-  { dir: 'brand', only: /fachada\.jpg$/, widths: [560, 840, null] },
+  { dir: 'brand', only: /fachada\.jpg$/, widths: [560, 840, 1200, null] },
   { dir: 'servicios', widths: [640, 1000, null] },
   { dir: 'fachadas-columnas', widths: [300, null] },
   { dir: '.', only: /^tienda-interior\.jpg$/, widths: [400, null], shallow: true },
