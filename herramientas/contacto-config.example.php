@@ -9,5 +9,5 @@ return [
   // Remitente: tiene que ser del dominio verificado en Resend
   'from' => 'Web Comercial Tortosa <web@comercialtortosa.com>',
   // Quién recibe las solicitudes
-  'to' => 'jonro674@gmail.com',
+  'to' => 'david@comercialtortosa.com',
 ];
