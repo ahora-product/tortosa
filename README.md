@@ -12,6 +12,7 @@ Página web de una sola pantalla para **Comercial Tortosa** — reclamos publici
 | `styles.css` | El diseño (colores, tipografías, distribución). |
 | `script.js` | El comportamiento (menú móvil, animaciones, formulario). |
 | `assets/` | Las imágenes (mira `assets/README.md`). |
+| `privacidad.html`, `aviso-legal.html`, `cookies.html` | Textos legales (RGPD, LOPDGDD y LSSI), enlazados desde el pie. Si se añade analítica o el feed de Instagram, hay que actualizar `cookies.html` y poner aviso de cookies. |
 | `robots.txt` y `sitemap.xml` | Ayudan a que Google encuentre la web (SEO). |
 
 ---
