@@ -6,6 +6,9 @@
 # La web nueva manda aunque quede algún index.php de la antigua
 DirectoryIndex index.html
 
+# Página para direcciones que no existen (cuenta atrás y a la portada)
+ErrorDocument 404 /404.html
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página no encontrada | Comercial Tortosa</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#2A211B">
+  <!-- Rutas desde la raíz (/...): esta página se muestra en cualquier URL que no exista -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <noscript><meta http-equiv="refresh" content="3;url=/"></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    .e404 { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 40px 20px; text-align: center; }
+    .e404-card {
+      width: min(560px, 100%); padding: clamp(40px, 7vw, 64px) clamp(24px, 6vw, 56px);
+      border-radius: clamp(28px, 4vw, 48px); background: var(--brown-2); box-shadow: inset 0 0 0 1px var(--line-dark);
+    }
+    .e404-logo { display: block; width: fit-content; margin: 0 auto 36px; }
+    .e404-logo img { width: 150px; height: auto; display: block; }
+    .e404 .label { display: block; }
+    .e404 h1 { font-family: var(--font-disp); font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.05; margin: 14px 0 0; }
+    .e404 p { color: var(--on-dark-muted); margin: 14px auto 0; max-width: 34ch; }
+    .e404-count {
+      display: grid; place-items: center; width: 112px; height: 112px; margin: 32px auto;
+      border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line-dark); background: var(--brown-3);
+      font-family: var(--font-disp); font-size: 3.6rem; line-height: 1; color: var(--champagne);
+    }
+    .e404-count.tick { animation: e404-tick .5s var(--ease); }
+    @keyframes e404-tick { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .e404-count.tick { animation: none; } }
+  </style>
+</head>
+
+<body>
+  <main class="e404">
+    <div class="e404-card">
+      <a class="e404-logo" href="/" aria-label="Tortosa, inicio"><img src="/assets/brand/logo.svg" alt="Tortosa"></a>
+      <span class="label">Error 404</span>
+      <h1>Esta página <em>no existe</em></h1>
+      <p>Puede que el enlace sea antiguo o esté mal escrito. Te llevamos a la portada en…</p>
+      <div class="e404-count" id="e404-count" aria-live="polite">3</div>
+      <a class="btn btn-primary" href="/">Ir ahora <span class="btn-arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </main>
+
+  <script>
+    /* Cuenta atrás 3-2-1 y a la portada */
+    (function () {
+      var el = document.getElementById('e404-count');
+      var n = 3;
+      var t = setInterval(function () {
+        n -= 1;
+        if (n < 1) { clearInterval(t); location.replace('/'); return; }
+        el.textContent = n;
+        el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick');
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
