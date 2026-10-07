@@ -2,8 +2,9 @@
 /* ============================================================
    TORTOSA — Plantilla del email de "nueva solicitud" (contacto.php)
    Mismo estilo que la sección de contacto de la web: tarjeta marfil
-   con los datos y panel oscuro con el mensaje. HTML de email: tablas
-   y estilos en línea (Gmail y Outlook no leen <style> ni flex).
+   con los datos, el mensaje ("Cuéntanos más") y el botón de responder.
+   HTML de email: tablas y estilos en línea (Gmail y Outlook no leen
+   <style> ni flex).
    ============================================================ */
 declare(strict_types=1);
 
@@ -31,13 +32,13 @@ function emailSolicitud(array $d): array {
   }
 
   // Paleta y tipografías de la web (styles.css)
-  $fondo = '#2A211B'; $panel = '#352A22'; $marfil = '#E9DFCC'; $marfilClaro = '#F6F0E4';
+  $fondo = '#2A211B'; $marfil = '#E9DFCC'; $marfilClaro = '#F6F0E4';
   $champan = '#B7937B'; $marronTexto = '#140F0B'; $acento = '#8A6A44';
   $serif = "'DM Serif Display', Georgia, 'Times New Roman', serif";
   $sans = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 
   $chips = '';
-  foreach ($d['necesita'] ?: ['Sin indicar'] as $t) {
+  foreach ($d['necesita'] as $t) {
     $chips .= '<span style="display:inline-block;margin:0 0 6px 6px;padding:6px 12px;border-radius:999px;background:' . $marfilClaro .
       ';border:1px solid ' . $champan . ';font-size:13px;line-height:1.2;color:' . $marronTexto . ';">' . $e($t) . '</span>';
   }
@@ -52,14 +53,15 @@ function emailSolicitud(array $d): array {
   $contactoHtml = $e($d['contacto']);
   if ($boton) $contactoHtml = '<a href="' . $e($boton[1]) . '" style="color:#140F0B;text-decoration:underline;">' . $contactoHtml . '</a>';
 
+  // Botón oscuro (sobre la tarjeta marfil), con la flecha en el color de la marca
   $botonHtml = '';
   if ($boton) {
     $botonHtml = '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;"><tr>' .
-      '<td style="border-radius:999px;background:' . $marfil . ';">' .
+      '<td style="border-radius:999px;background:' . $fondo . ';">' .
       '<a href="' . $e($boton[1]) . '" style="display:inline-block;padding:7px 7px 7px 24px;font-family:' . $sans .
-      ';font-size:15px;font-weight:600;color:' . $marronTexto . ';text-decoration:none;border-radius:999px;">' . $e($boton[0]) .
+      ';font-size:15px;font-weight:600;color:' . $marfil . ';text-decoration:none;border-radius:999px;">' . $e($boton[0]) .
       '&nbsp;&nbsp;<span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:50%;background:' .
-      $fondo . ';color:' . $marfil . ';font-size:15px;vertical-align:middle;">&#8599;</span></a></td></tr></table>';
+      $champan . ';color:' . $fondo . ';font-size:15px;vertical-align:middle;">&#8599;</span></a></td></tr></table>';
   }
 
   $html = '<!doctype html><html lang="es"><head><meta charset="utf-8">' .
@@ -86,16 +88,16 @@ function emailSolicitud(array $d): array {
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">' .
     $fila('Nombre', $e($d['nombre']), true) .
     $fila('Email o teléfono', $contactoHtml) .
-    $fila('Necesita', $chips) .
-    '</table></td></tr>' .
+    ($chips !== '' ? $fila('¿Qué necesita?', $chips) : '') .
+    '</table>' .
 
-    '<tr><td style="height:14px;line-height:14px;font-size:0;">&nbsp;</td></tr>' .
-
-    // Panel oscuro con el mensaje
-    '<tr><td style="background:' . $panel . ';border:1px solid rgba(233,223,204,.13);border-radius:28px;padding:32px;">' .
-    '<p style="margin:0 0 12px;font-family:' . $sans . ';font-size:14px;font-weight:500;color:rgba(233,223,204,.62);">Mensaje</p>' .
-    '<p style="margin:0;font-family:' . $sans . ';font-size:16px;line-height:1.6;color:' . $marfil . ';white-space:pre-wrap;">' . $e($d['mensaje']) . '</p>' .
+    // "Cuéntanos más": el mensaje, como descripción a todo el ancho
+    '<div style="border-top:1px solid rgba(20,15,11,.12);padding-top:16px;">' .
+    '<p style="margin:0 0 10px;font-family:' . $sans . ';font-size:15px;color:rgba(20,15,11,.55);">Cuéntanos más</p>' .
+    '<p style="margin:0;font-family:' . $sans . ';font-size:16px;line-height:1.6;color:' . $marronTexto . ';white-space:pre-wrap;">' . $e($d['mensaje']) . '</p>' .
+    '</div>' .
     $botonHtml .
+    '<div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>' .
     '</td></tr>' .
 
     // Pie
@@ -108,8 +110,8 @@ function emailSolicitud(array $d): array {
 
   $text = "NUEVA SOLICITUD DE PRESUPUESTO\nRecibida desde la web el $fecha.\n\n" .
     'Nombre: ' . $d['nombre'] . "\nEmail o teléfono: " . $d['contacto'] .
-    "\nNecesita: " . ($d['necesita'] ? implode(', ', $d['necesita']) : 'Sin indicar') .
-    "\n\nMensaje:\n" . $d['mensaje'] . "\n\n—\nFormulario de contacto de comercialtortosa.com\n";
+    ($d['necesita'] ? "\n¿Qué necesita?: " . implode(', ', $d['necesita']) : '') .
+    "\n\nCuéntanos más:\n" . $d['mensaje'] . "\n\n—\nFormulario de contacto de comercialtortosa.com\n";
 
   return ['html' => $html, 'text' => $text];
 }
