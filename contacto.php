@@ -134,30 +134,26 @@ if (!dentroDelLimite(dirname($rutaCfg))) {
   responder(429, ['ok' => false, 'error' => 'Demasiados envíos, prueba más tarde']);
 }
 
-/* ---------- Email ---------- */
-$e = function (string $s): string { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); };
-$necesita = $tipos ? implode(', ', $tipos) : '—';
+/* ---------- Email (diseño en contacto-plantilla.php) ---------- */
+require __DIR__ . '/contacto-plantilla.php';
 
-$textoPlano = "Nueva solicitud desde la web\n\n" .
-  "Nombre: $nombre\nEmail o teléfono: $contacto\nNecesita: $necesita\n\nMensaje:\n$mensaje\n";
-
-$html = '<div style="font-family:Arial,sans-serif;font-size:15px;color:#16120F;max-width:560px">' .
-  '<h2 style="font-size:18px;margin:0 0 16px">Nueva solicitud desde la web</h2>' .
-  '<table cellpadding="6" style="border-collapse:collapse">' .
-  '<tr><td style="color:#7C5E49"><b>Nombre</b></td><td>' . $e($nombre) . '</td></tr>' .
-  '<tr><td style="color:#7C5E49"><b>Email o teléfono</b></td><td>' . $e($contacto) . '</td></tr>' .
-  '<tr><td style="color:#7C5E49"><b>Necesita</b></td><td>' . $e($necesita) . '</td></tr>' .
-  '</table>' .
-  '<p style="color:#7C5E49;margin:16px 0 4px"><b>Mensaje</b></p>' .
-  '<p style="white-space:pre-wrap;margin:0">' . $e($mensaje) . '</p>' .
-  '</div>';
+// El logo se sirve desde la misma carpeta que este archivo (vale en /nueva/ y en la raíz)
+$carpeta = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
+$email = emailSolicitud([
+  'nombre' => $nombre,
+  'contacto' => $contacto,
+  'necesita' => $tipos,
+  'mensaje' => $mensaje,
+  'fecha' => new DateTimeImmutable('now', new DateTimeZone('Europe/Madrid')),
+  'logo' => 'https://comercialtortosa.com' . $carpeta . '/assets/brand/logo-email.png',
+]);
 
 $payload = [
   'from' => $cfg['from'],
   'to' => [$cfg['to']],
   'subject' => 'Solicitud de presupuesto — ' . $nombre,
-  'text' => $textoPlano,
-  'html' => $html,
+  'text' => $email['text'],
+  'html' => $email['html'],
 ];
 // "Responder" va directo al cliente si dejó un email
 if (filter_var($contacto, FILTER_VALIDATE_EMAIL)) $payload['reply_to'] = $contacto;
