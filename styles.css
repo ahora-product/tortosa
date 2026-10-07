@@ -644,6 +644,8 @@ h1 em, h2 em { color: var(--champagne); }
 .footer h3, .footer-brand p, .footer-bottom { color: var(--on-dark-muted); }
 .footer ul a:hover, .footer-bottom a:hover { color: var(--champagne); }
 .footer-word { background-color: #1A1410; }
+/* Aviso de IA: muy discreto, bajo la línea del pie */
+.footer-ai { margin: -14px 0 0; padding-bottom: 22px; font-size: .7rem; text-align: center; color: var(--on-dark-faint); }
 
 ::selection { background: var(--champagne); color: var(--brown); }
 
