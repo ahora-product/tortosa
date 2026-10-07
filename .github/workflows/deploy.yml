@@ -29,10 +29,10 @@ concurrency:
 env:
   SERVIDOR: ftp.comercialtortosa.com
   # Carpeta de destino, relativa a "/" del servidor (la cuenta FTP entra ahí y el
-  # panel no deja limitarla). La web se publica desde "html". Primero "html/nueva"
-  # para probar en comercialtortosa.com/nueva/; al pasar a producción se cambia a
-  # "html" en un commit aparte. Nunca "/" ni ".": ahí están logs, .ssh, etc.
-  DESTINO: html/nueva
+  # panel no deja limitarla). La web se publica desde "html" (comercialtortosa.com).
+  # Para probar algo aparte, "html/nueva" → comercialtortosa.com/nueva/.
+  # Nunca "/" ni ".": ahí están logs, .ssh, data, etc.
+  DESTINO: html
 
 jobs:
   deploy:
