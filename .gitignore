@@ -14,3 +14,7 @@ node_modules/
 # Copias de la base de datos del cliente: nunca al repo
 bbdd/
 *.sql
+
+# Configuración del formulario con la clave de Resend: solo en el servidor
+contacto-config.php
+data/

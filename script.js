@@ -53,29 +53,39 @@
     document.querySelectorAll('main section[id]').forEach(function (s) { navIO.observe(s); });
   }
 
-  /* ---------- Formulario: abre el correo con el mensaje escrito ---------- */
+  /* ---------- Formulario: envía la solicitud a contacto.php ----------
+     contacto.php la manda por email con Resend. El destinatario y la clave
+     están en el servidor (data/contacto-config.php), no en la web. */
   var form = document.getElementById('contact-form');
   var note = document.getElementById('form-note');
+  function setNote(text, type) { note.textContent = text; note.className = 'form-note' + (type ? ' ' + type : ''); }
   if (form) {
+    var submitBtn = form.querySelector('button[type="submit"]');
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = form.name.value.trim();
       var contact = form.contact.value.trim();
       var message = form.message.value.trim();
-      if (!name || !contact || !message) {
-        note.textContent = 'Por favor, rellena todos los campos.';
-        note.className = 'form-note err';
-        return;
-      }
+      if (!name || !contact || !message) { setNote('Por favor, rellena todos los campos.', 'err'); return; }
       var tipos = Array.prototype.map.call(form.querySelectorAll('[name="tipo"]:checked'), function (c) { return c.value; });
-      var body = 'Nombre: ' + name + '\nContacto: ' + contact +
-        (tipos.length ? '\nNecesita: ' + tipos.join(', ') : '') + '\n\nMensaje:\n' + message;
-      window.location.href = 'mailto:david@comercialtortosa.com' +
-        '?subject=' + encodeURIComponent('Solicitud de presupuesto — ' + name) +
-        '&body=' + encodeURIComponent(body);
-      note.textContent = 'Abriendo tu correo… si no se abre, escríbenos a david@comercialtortosa.com';
-      note.className = 'form-note ok';
-      form.reset();
+
+      submitBtn.disabled = true;
+      setNote('Enviando…');
+      fetch('contacto.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, contact: contact, message: message, tipos: tipos, botcheck: form.botcheck.checked })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res.ok) throw new Error(res.error);
+          setNote('¡Gracias! Hemos recibido tu solicitud y te responderemos lo antes posible.', 'ok');
+          form.reset();
+        })
+        .catch(function () {
+          setNote('No se ha podido enviar. Llámanos al 96 357 01 11 o escríbenos a david@comercialtortosa.com', 'err');
+        })
+        .then(function () { submitBtn.disabled = false; });
     });
   }
 
