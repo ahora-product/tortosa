@@ -10,3 +10,7 @@ Thumbs.db
 
 # Dependencias (por si en el futuro se usan)
 node_modules/
+
+# Copias de la base de datos del cliente: nunca al repo
+bbdd/
+*.sql

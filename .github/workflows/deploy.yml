@@ -1,0 +1,89 @@
+# Despliegue de la web a comercialtortosa.com (Piensa Solutions) por SFTP.
+#
+# - El servidor solo admite SFTP (puerto 22). Su FTP del puerto 21 va sin cifrar: no se usa.
+# - Nunca borra nada del servidor: solo sube archivos nuevos o cambiados.
+# - Por ahora solo se lanza a mano: Actions → Deploy → Run workflow.
+#   Cuando la web esté en producción y probada, se añade "push: branches: [main]".
+#
+# Secrets necesarios (Settings → Secrets and variables → Actions):
+#   FTP_USER      usuario de la cuenta de despliegue (no la principal)
+#   FTP_PASSWORD  su contraseña
+
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      simulacro:
+        description: 'Simulacro: solo muestra lo que subiría, sin tocar el servidor'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  SERVIDOR: ftp.comercialtortosa.com
+  # Carpeta de destino, relativa a "/" del servidor (la cuenta FTP entra ahí y el
+  # panel no deja limitarla). La web se publica desde "html". Primero "html/nueva"
+  # para probar en comercialtortosa.com/nueva/; al pasar a producción se cambia a
+  # "html" en un commit aparte. Nunca "/" ni ".": ahí están logs, .ssh, etc.
+  DESTINO: html/nueva
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Comprobar destino
+        run: |
+          case "$DESTINO" in
+            html|html/*) ;;
+            *) echo "::error::DESTINO debe ser html o una subcarpeta de html"; exit 1 ;;
+          esac
+          case "$DESTINO" in
+            *..*|*//*) echo "::error::DESTINO no puede contener .. ni //"; exit 1 ;;
+          esac
+
+      - name: Instalar lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Huella SSH del servidor
+        # Claves públicas de ftp.comercialtortosa.com (ssh-keyscan, 07/10/2026).
+        # Si Piensa cambia de servidor, el despliegue fallará aquí a propósito:
+        # comprobar que el cambio es legítimo y actualizar estas líneas.
+        run: |
+          mkdir -p ~/.ssh
+          cat >> ~/.ssh/known_hosts <<'EOF'
+          ftp.comercialtortosa.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPUbSVbEfQo1/xr1QVKXX2VpoAMt7xID4Q5TYQ1CXf4I
+          ftp.comercialtortosa.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBomPAlXRFudZ26GAC8JzQVleogeMo7JKK7Aw9GbQ44Q3FOefUZkF+Hwpx12ysengDNowTm5H1gZhZr3saH2Cbg=
+          ftp.comercialtortosa.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDpkz0R6NifM5GN1Ywta5TVPa1+wN2HFKlL6HyNyuQhb5S5neaVKCBaKWuB9vSYkZViVW0hocxzFXfZdy/6mouz5KGDQzO3+Li5pqmC6eCU1ZxdB1pDa0LZDwc4Xo02fpXiGpZ5e493uA+y6cNS4+iV350AKcfXc8Qm+dRpOz1s3opQehLZSugg8/ObEX56X62Y6hXm38H9LDAWypo2yOHjvi6DhbzH3v66KwLzxqOzvmflc8PYQ4iI3IK3A6z/bLDHl89g3bk1q53OdcqRaXhJ2AR/P3qtpvHmAQcqCcGH8ZVCGZfHz6reynM/CxqL1BGR8aP51z/z3n38ByiN0yRrF0rtqhVZ29Sv5c5/5opYjUHMz2ZwyAAEJPpK1pjMxieI/lz7pP+iv5IR1zfCPqiRWWyuz2Y6o6FgzFUwUd2kF0G9Rj8q9w7Y02XCK4alKEnxGQ7g6/VJuf2Yl+DrCXNAUOz5BZdlkFEu6fiNUlOiX7b8iswbjyEO0dnItQ7NQXk=
+          EOF
+
+      - name: Subir por SFTP
+        env:
+          FTP_USER: ${{ secrets.FTP_USER }}
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          SIMULACRO: ${{ inputs.simulacro && '--dry-run' || '' }}
+        # 1.ª pasada: HTML, CSS, JS, .htaccess... (pesan poco, se suben siempre).
+        # 2.ª pasada: imágenes, solo las nuevas o con distinto tamaño.
+        # Fuera del servidor: assets/projects (no lo usa ninguna página), _descartes,
+        # herramientas de desarrollo, README, package.json y archivos de git.
+        run: |
+          cat > "$RUNNER_TEMP/deploy.lftp" <<EOF
+          set cmd:fail-exit yes
+          set net:max-retries 3
+          set net:timeout 30
+          set sftp:auto-confirm no
+          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=yes"
+          open -u "$FTP_USER" --env-password sftp://$SERVIDOR
+          mirror -R $SIMULACRO --verbose --no-perms --parallel=3 -x "^[.]git" -x "^assets/" -x "^herramientas/" -x "^bbdd/" -x "^node_modules/" -x "^README[.]md" -x "^CLAUDE[.]md" -x "^package" ./ $DESTINO/
+          mirror -R $SIMULACRO --verbose --no-perms --parallel=3 --ignore-time -x "^projects/" -x "^portfolio/_descartes/" -x "^README[.]md" assets/ $DESTINO/assets/
+          EOF
+          lftp -f "$RUNNER_TEMP/deploy.lftp"
