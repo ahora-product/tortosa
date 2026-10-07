@@ -76,13 +76,18 @@ jobs:
         # Fuera del servidor: assets/projects (no lo usa ninguna página), _descartes,
         # herramientas de desarrollo, README, package.json y archivos de git.
         run: |
+          # Quita espacios y saltos de línea que se cuelan al pegar los secrets
+          FTP_USER="$(printf '%s' "$FTP_USER" | tr -d '[:space:]')"
+          export LFTP_PASSWORD="$(printf '%s' "$LFTP_PASSWORD" | tr -d '\r\n')"
+          # "cls html/" comprueba el login (también en simulacro) antes de subir nada
           cat > "$RUNNER_TEMP/deploy.lftp" <<EOF
           set cmd:fail-exit yes
           set net:max-retries 3
           set net:timeout 30
           set sftp:auto-confirm no
-          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=yes"
+          set sftp:connect-program "ssh -a -x -o StrictHostKeyChecking=yes -o PreferredAuthentications=password -o PubkeyAuthentication=no"
           open -u "$FTP_USER" --env-password sftp://$SERVIDOR
+          cls -1 html/ > /dev/null
           mirror -R $SIMULACRO --verbose --no-perms --parallel=3 -x "^[.]git" -x "^assets/" -x "^herramientas/" -x "^bbdd/" -x "^node_modules/" -x "^README[.]md" -x "^CLAUDE[.]md" -x "^package" ./ $DESTINO/
           mirror -R $SIMULACRO --verbose --no-perms --parallel=3 --ignore-time -x "^projects/" -x "^portfolio/_descartes/" -x "^README[.]md" assets/ $DESTINO/assets/
           EOF
