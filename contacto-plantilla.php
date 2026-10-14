@@ -2,9 +2,12 @@
 /* ============================================================
    TORTOSA — Plantilla del email de "nueva solicitud" (contacto.php)
    Mismo estilo que la sección de contacto de la web: tarjeta marfil
-   con los datos, el mensaje ("Cuéntanos más") y el botón de responder.
-   HTML de email: tablas y estilos en línea (Gmail y Outlook no leen
-   <style> ni flex).
+   con los datos y el mensaje ("Cuéntanos más"). Sin botón: se contesta
+   con "Responder" del propio correo (contacto.php pone reply_to).
+   HTML de email pensado también para Outlook de escritorio (motor de
+   Word): solo tablas, estilos en línea, colores en hex (no lee rgba),
+   saltos de línea con <br> (no lee pre-wrap), ancho fijo con tabla
+   condicional (no lee max-width) y tipografías de sistema en Outlook.
    ============================================================ */
 declare(strict_types=1);
 
@@ -21,97 +24,99 @@ function emailSolicitud(array $d): array {
   $f = $d['fecha'];
   $fecha = $f->format('j') . ' de ' . $meses[(int) $f->format('n') - 1] . ' de ' . $f->format('Y') . ' · ' . $f->format('H:i');
   $primerNombre = explode(' ', $d['nombre'])[0];
-
-  // Botón: responder por email o llamar, según lo que haya dejado
-  $boton = null;
+  $esEmail = (bool) filter_var($d['contacto'], FILTER_VALIDATE_EMAIL);
   $telefono = preg_replace('/[\s.\-()]/', '', $d['contacto']) ?? '';
-  if (filter_var($d['contacto'], FILTER_VALIDATE_EMAIL)) {
-    $boton = ['Responder a ' . $primerNombre, 'mailto:' . $d['contacto'] . '?subject=' . rawurlencode('Tu solicitud de presupuesto — Comercial Tortosa')];
-  } elseif (preg_match('/^\+?\d{9,15}$/', $telefono)) {
-    $boton = ['Llamar a ' . $primerNombre, 'tel:' . $telefono];
-  }
 
-  // Paleta y tipografías de la web (styles.css)
+  // Paleta y tipografías de la web (styles.css). Los tonos "suaves" son el
+  // marrón del texto mezclado con el marfil, ya calculados (Outlook no lee rgba).
   $fondo = '#2A211B'; $marfil = '#E9DFCC'; $marfilClaro = '#F6F0E4';
   $champan = '#B7937B'; $marronTexto = '#140F0B'; $acento = '#8A6A44';
+  $etiqueta = '#746D62'; $secundario = '#5F584F'; $linea = '#CFC6B5'; $pie = '#807769';
   $serif = "'DM Serif Display', Georgia, 'Times New Roman', serif";
   $sans = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 
+  // Chips de "¿Qué necesita?". En Outlook los &nbsp; hacen de relleno lateral.
   $chips = '';
   foreach ($d['necesita'] as $t) {
     $chips .= '<span style="display:inline-block;margin:0 0 6px 6px;padding:6px 12px;border-radius:999px;background:' . $marfilClaro .
-      ';border:1px solid ' . $champan . ';font-size:13px;line-height:1.2;color:' . $marronTexto . ';">' . $e($t) . '</span>';
+      ';border:1px solid ' . $champan . ';font-family:' . $sans . ';font-size:13px;line-height:16px;color:' . $marronTexto . ';white-space:nowrap;">' .
+      '<!--[if mso]>&nbsp;&nbsp;<![endif]-->' . $e($t) . '<!--[if mso]>&nbsp;&nbsp;<![endif]--></span> ';
   }
 
-  $fila = function (string $etiqueta, string $valor, bool $primera = false) use ($sans): string {
-    return '<tr><td style="padding:14px 0;' . ($primera ? '' : 'border-top:1px solid rgba(20,15,11,.12);') .
-      'font-family:' . $sans . ';font-size:15px;color:rgba(20,15,11,.55);vertical-align:top;white-space:nowrap;">' . $etiqueta . '</td>' .
-      '<td align="right" style="padding:14px 0 14px 16px;' . ($primera ? '' : 'border-top:1px solid rgba(20,15,11,.12);') .
-      'font-family:' . $sans . ';font-size:15px;color:#140F0B;text-align:right;">' . $valor . '</td></tr>';
+  $fila = function (string $titulo, string $valor, bool $primera = false) use ($sans, $etiqueta, $linea, $marronTexto): string {
+    $borde = $primera ? '' : 'border-top:1px solid ' . $linea . ';';
+    return '<tr><td valign="top" style="padding:14px 0;' . $borde .
+      'font-family:' . $sans . ';font-size:15px;line-height:22px;color:' . $etiqueta . ';white-space:nowrap;">' . $titulo . '</td>' .
+      '<td align="right" valign="top" style="padding:14px 0 14px 16px;' . $borde .
+      'font-family:' . $sans . ';font-size:15px;line-height:22px;color:' . $marronTexto . ';text-align:right;">' . $valor . '</td></tr>';
   };
 
+  // Email en texto plano (sin mailto: se contesta con "Responder"); teléfono, pulsable para llamar
   $contactoHtml = $e($d['contacto']);
-  if ($boton) $contactoHtml = '<a href="' . $e($boton[1]) . '" style="color:#140F0B;text-decoration:underline;">' . $contactoHtml . '</a>';
-
-  // Botón oscuro (sobre la tarjeta marfil), con la flecha en el color de la marca
-  $botonHtml = '';
-  if ($boton) {
-    $botonHtml = '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:28px;"><tr>' .
-      '<td style="border-radius:999px;background:' . $fondo . ';">' .
-      '<a href="' . $e($boton[1]) . '" style="display:inline-block;padding:7px 7px 7px 24px;font-family:' . $sans .
-      ';font-size:15px;font-weight:600;color:' . $marfil . ';text-decoration:none;border-radius:999px;">' . $e($boton[0]) .
-      '&nbsp;&nbsp;<span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border-radius:50%;background:' .
-      $champan . ';color:' . $fondo . ';font-size:15px;vertical-align:middle;">&#8599;</span></a></td></tr></table>';
+  if (!$esEmail && preg_match('/^\+?\d{9,15}$/', $telefono)) {
+    $contactoHtml = '<a href="tel:' . $e($telefono) . '" style="color:' . $marronTexto . ';text-decoration:underline;">' . $contactoHtml . '</a>';
   }
 
-  $html = '<!doctype html><html lang="es"><head><meta charset="utf-8">' .
-    '<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light">' .
-    '<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet">' .
-    '<title>Solicitud de presupuesto</title></head>' .
-    '<body style="margin:0;padding:0;background:' . $fondo . ';">' .
+  $mensajeHtml = nl2br($e($d['mensaje']), false);
+
+  $html = '<!doctype html><html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">' .
+    '<head><meta charset="utf-8">' .
+    '<meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="X-UA-Compatible" content="IE=edge">' .
+    '<meta name="color-scheme" content="light dark"><meta name="supported-color-schemes" content="light dark">' .
+    '<title>Solicitud de presupuesto</title>' .
+    // Outlook: escala correcta en pantallas de alta resolución y fuentes de sistema
+    // (con DM Sans/DM Serif pasaría a Times New Roman)
+    '<!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript>' .
+    '<style>body,table,td,p,a,span{font-family:Arial,Helvetica,sans-serif !important;}.serif,.serif em{font-family:Georgia,\'Times New Roman\',serif !important;}</style><![endif]-->' .
+    '<!--[if !mso]><!--><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400..700&display=swap" rel="stylesheet"><!--<![endif]-->' .
+    '</head>' .
+    '<body bgcolor="' . $fondo . '" style="margin:0;padding:0;background:' . $fondo . ';-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;">' .
     // Texto de vista previa en la bandeja de entrada
-    '<div style="display:none;max-height:0;overflow:hidden;opacity:0;">' . $e($d['nombre'] . ' — ' . cortarTexto($d['mensaje'], 90)) . '</div>' .
-    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:' . $fondo . ';"><tr><td align="center" style="padding:32px 12px;">' .
+    '<div style="display:none;mso-hide:all;max-height:0;overflow:hidden;opacity:0;font-size:1px;line-height:1px;color:' . $fondo . ';">' .
+    $e($d['nombre'] . ' — ' . cortarTexto($d['mensaje'], 90)) . '</div>' .
+    '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="' . $fondo . '" style="background:' . $fondo . ';"><tr><td align="center" style="padding:32px 12px;">' .
+    // Outlook no entiende max-width: tabla fija de 600 solo para él
+    '<!--[if mso]><table role="presentation" width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->' .
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">' .
 
-    // Cabecera: logo + etiqueta
+    // Cabecera: logo
     '<tr><td style="padding:4px 8px 28px;">' .
-    '<img src="' . $e($d['logo']) . '" width="150" height="26" alt="Tortosa" style="display:block;border:0;width:150px;height:auto;">' .
+    '<img src="' . $e($d['logo']) . '" width="150" height="26" alt="Tortosa" style="display:block;border:0;outline:none;width:150px;height:auto;">' .
     '</td></tr>' .
 
     // Tarjeta marfil con los datos
-    '<tr><td style="background:' . $marfil . ';border-radius:28px;padding:36px 32px 24px;">' .
-    '<p style="margin:0 0 14px;font-family:' . $sans . ';font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:' . $marronTexto . ';">Nueva solicitud</p>' .
-    '<h1 style="margin:0 0 10px;font-family:' . $serif . ';font-size:36px;line-height:1.05;font-weight:400;color:' . $marronTexto . ';">' .
-    'Solicitud de <em style="font-style:italic;color:' . $acento . ';">presupuesto</em></h1>' .
-    '<p style="margin:0 0 26px;font-family:' . $sans . ';font-size:15px;line-height:1.5;color:rgba(20,15,11,.65);">Recibida desde la web el ' . $fecha . '.</p>' .
+    '<tr><td bgcolor="' . $marfil . '" style="background:' . $marfil . ';border-radius:28px;padding:36px 32px 32px;">' .
+    '<p style="margin:0 0 14px;font-family:' . $sans . ';font-size:12px;line-height:16px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:' . $marronTexto . ';">Nueva solicitud</p>' .
+    '<h1 class="serif" style="margin:0 0 10px;font-family:' . $serif . ';font-size:36px;line-height:40px;mso-line-height-rule:exactly;font-weight:400;color:' . $marronTexto . ';">' .
+    'Solicitud de <em style="font-style:italic;font-weight:400;color:' . $acento . ';">presupuesto</em></h1>' .
+    '<p style="margin:0 0 26px;font-family:' . $sans . ';font-size:15px;line-height:22px;color:' . $secundario . ';">Recibida desde la web el ' . $fecha . '.</p>' .
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">' .
     $fila('Nombre', $e($d['nombre']), true) .
     $fila('Email o teléfono', $contactoHtml) .
     ($chips !== '' ? $fila('¿Qué necesita?', $chips) : '') .
-    '</table>' .
 
     // "Cuéntanos más": el mensaje, como descripción a todo el ancho
-    '<div style="border-top:1px solid rgba(20,15,11,.12);padding-top:16px;">' .
-    '<p style="margin:0 0 10px;font-family:' . $sans . ';font-size:15px;color:rgba(20,15,11,.55);">Cuéntanos más</p>' .
-    '<p style="margin:0;font-family:' . $sans . ';font-size:16px;line-height:1.6;color:' . $marronTexto . ';white-space:pre-wrap;">' . $e($d['mensaje']) . '</p>' .
-    '</div>' .
-    $botonHtml .
-    '<div style="height:12px;line-height:12px;font-size:0;">&nbsp;</div>' .
+    '<tr><td colspan="2" style="padding:16px 0 0;border-top:1px solid ' . $linea . ';font-family:' . $sans . ';font-size:15px;line-height:22px;color:' . $etiqueta . ';">Cuéntanos más</td></tr>' .
+    '<tr><td colspan="2" style="padding:10px 0 0;font-family:' . $sans . ';font-size:16px;line-height:26px;color:' . $marronTexto . ';">' . $mensajeHtml . '</td></tr>' .
+    '</table>' .
     '</td></tr>' .
 
     // Pie
-    '<tr><td style="padding:24px 8px 0;font-family:' . $sans . ';font-size:12px;line-height:1.6;color:rgba(233,223,204,.45);">' .
+    '<tr><td style="padding:24px 8px 0;font-family:' . $sans . ';font-size:12px;line-height:19px;color:' . $pie . ';">' .
+    ($esEmail ? 'Para contestar a ' . $e($primerNombre) . ', responde a este correo: le llega directamente. ' : '') .
     'Este aviso llega desde el formulario de contacto de comercialtortosa.com.' .
-    (filter_var($d['contacto'], FILTER_VALIDATE_EMAIL) ? ' Si respondes a este correo, la respuesta le llega directamente a ' . $e($primerNombre) . '.' : '') .
     '</td></tr>' .
 
-    '</table></td></tr></table></body></html>';
+    '</table>' .
+    '<!--[if mso]></td></tr></table><![endif]-->' .
+    '</td></tr></table></body></html>';
 
   $text = "NUEVA SOLICITUD DE PRESUPUESTO\nRecibida desde la web el $fecha.\n\n" .
     'Nombre: ' . $d['nombre'] . "\nEmail o teléfono: " . $d['contacto'] .
     ($d['necesita'] ? "\n¿Qué necesita?: " . implode(', ', $d['necesita']) : '') .
-    "\n\nCuéntanos más:\n" . $d['mensaje'] . "\n\n—\nFormulario de contacto de comercialtortosa.com\n";
+    "\n\nCuéntanos más:\n" . $d['mensaje'] . "\n\n—\n" .
+    ($esEmail ? 'Para contestar a ' . $primerNombre . ", responde a este correo.\n" : '') .
+    "Formulario de contacto de comercialtortosa.com\n";
 
   return ['html' => $html, 'text' => $text];
 }
