@@ -137,15 +137,12 @@ if (!dentroDelLimite(dirname($rutaCfg))) {
 /* ---------- Email (diseño en contacto-plantilla.php) ---------- */
 require __DIR__ . '/contacto-plantilla.php';
 
-// El logo se sirve desde la misma carpeta que este archivo (vale en /nueva/ y en la raíz)
-$carpeta = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
 $email = emailSolicitud([
   'nombre' => $nombre,
   'contacto' => $contacto,
   'necesita' => $tipos,
   'mensaje' => $mensaje,
   'fecha' => new DateTimeImmutable('now', new DateTimeZone('Europe/Madrid')),
-  'logo' => 'https://comercialtortosa.com' . $carpeta . '/assets/brand/logo-email.png',
 ]);
 
 $payload = [

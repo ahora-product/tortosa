@@ -15,7 +15,7 @@ declare(strict_types=1);
 if (realpath($_SERVER['SCRIPT_FILENAME'] ?? '') === __FILE__) { http_response_code(404); exit; }
 
 /**
- * @param array $d nombre, contacto, necesita (array), mensaje, fecha (DateTimeInterface), logo (URL absoluta)
+ * @param array $d nombre, contacto, necesita (array), mensaje, fecha (DateTimeInterface)
  * @return array{html: string, text: string}
  */
 function emailSolicitud(array $d): array {
@@ -23,7 +23,6 @@ function emailSolicitud(array $d): array {
   $meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   $f = $d['fecha'];
   $fecha = $f->format('j') . ' de ' . $meses[(int) $f->format('n') - 1] . ' de ' . $f->format('Y') . ' · ' . $f->format('H:i');
-  $primerNombre = explode(' ', $d['nombre'])[0];
   $esEmail = (bool) filter_var($d['contacto'], FILTER_VALIDATE_EMAIL);
   $telefono = preg_replace('/[\s.\-()]/', '', $d['contacto']) ?? '';
 
@@ -79,11 +78,6 @@ function emailSolicitud(array $d): array {
     '<!--[if mso]><table role="presentation" width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->' .
     '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">' .
 
-    // Cabecera: logo
-    '<tr><td style="padding:4px 8px 28px;">' .
-    '<img src="' . $e($d['logo']) . '" width="150" height="26" alt="Tortosa" style="display:block;border:0;outline:none;width:150px;height:auto;">' .
-    '</td></tr>' .
-
     // Tarjeta marfil con los datos
     '<tr><td bgcolor="' . $marfil . '" style="background:' . $marfil . ';border-radius:28px;padding:36px 32px 32px;">' .
     '<p style="margin:0 0 14px;font-family:' . $sans . ';font-size:12px;line-height:16px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:' . $marronTexto . ';">Nueva solicitud</p>' .
@@ -103,7 +97,6 @@ function emailSolicitud(array $d): array {
 
     // Pie
     '<tr><td style="padding:24px 8px 0;font-family:' . $sans . ';font-size:12px;line-height:19px;color:' . $pie . ';">' .
-    ($esEmail ? 'Para contestar a ' . $e($primerNombre) . ', responde a este correo: le llega directamente. ' : '') .
     'Este aviso llega desde el formulario de contacto de comercialtortosa.com.' .
     '</td></tr>' .
 
@@ -115,7 +108,6 @@ function emailSolicitud(array $d): array {
     'Nombre: ' . $d['nombre'] . "\nEmail o teléfono: " . $d['contacto'] .
     ($d['necesita'] ? "\n¿Qué necesita?: " . implode(', ', $d['necesita']) : '') .
     "\n\nCuéntanos más:\n" . $d['mensaje'] . "\n\n—\n" .
-    ($esEmail ? 'Para contestar a ' . $primerNombre . ", responde a este correo.\n" : '') .
     "Formulario de contacto de comercialtortosa.com\n";
 
   return ['html' => $html, 'text' => $text];
